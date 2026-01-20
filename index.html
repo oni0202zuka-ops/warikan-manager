@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歓送迎会 割り勘マネージャー</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-blue: #0071e3;
+            --primary-blue-hover: #0077ed;
+            --secondary-gray: #f5f5f7;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --card-bg: #ffffff;
+            --border-color: #d2d2d7;
+            --success-green: #34c759;
+            --warning-orange: #ff9500;
+            --danger-red: #ff3b30;
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
+            background: #f5f5f7;
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        input, select, textarea, button {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: var(--shadow-medium);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: white;
+            color: var(--text-primary);
+            padding: 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .section:hover {
+            box-shadow: var(--shadow-light);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+        }
+        
+        input[type="number"] {
+            text-align: right;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+        }
+        
+        thead {
+            background: var(--secondary-gray);
+            color: var(--text-primary);
+        }
+        
+        th {
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+        
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        tbody tr {
+            transition: all 0.2s ease;
+        }
+        
+        tbody tr:hover {
+            background: var(--secondary-gray);
+        }
+        
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .row-calculated {
+            background: rgba(52, 199, 89, 0.1) !important;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-blue-hover);
+        }
+        
+        .btn-success {
+            background: var(--success-green);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: var(--danger-red);
+            color: white;
+        }
+        
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .total-display {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .total-display h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .total-display .amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .diff-display {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .diff-positive {
+            background: rgba(52, 199, 89, 0.15);
+            color: var(--success-green);
+        }
+        
+        .diff-negative {
+            background: rgba(255, 59, 48, 0.15);
+            color: var(--danger-red);
+        }
+        
+        .diff-zero {
+            background: rgba(0, 113, 227, 0.15);
+            color: var(--primary-blue);
+        }
+        
+        .slack-output {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+            line-height: 1.8;
+        }
+        
+        .checkbox-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .hidden-row {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            table {
+                font-size: 0.85rem;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .grid-2,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--secondary-gray);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-secondary);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>歓送迎会 割り勘マネージャー</h1>
+            <p>スマートに会費を計算・管理</p>
+        </div>
+        
+        <div class="content">
+            <!-- 送別品の内訳 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #ff9500;">
+                        <path d="M20 12v10H4V12M22 7l-10-5-10 5 10 5 10-5zM12 12v10"/>
+                    </svg>
+                    送別品の内訳
+                </h2>
+                <table id="giftTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 50%">項目名</th>
+                            <th style="width: 35%">金額（円）</th>
+                            <th style="width: 15%">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="giftTableBody">
+                        <tr>
+                            <td><input type="text" class="gift-item" placeholder="例: プレゼント"></td>
+                            <td><input type="number" class="gift-amount" placeholder="0"></td>
+                            <td><button class="btn btn-danger btn-small" onclick="deleteGiftRow(this)">削除</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="addGiftRow()">行を追加</button>
+                </div>
+                <div class="total-display">
+                    <h3>送別品合計</h3>
+                    <div class="amount" id="giftTotal">¥0</div>
+                </div>
+            </div>
+            
+            <!-- 会費入力 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #34c759;">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 18V6"/>
+                    </svg>
+                    会費入力
+                </h2>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">一次会 合計金額（円）</label>
+                        <input type="number" id="primaryTotal" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">二次会 合計金額（円）</label>
+                        <input type="number" id="secondaryTotal" placeholder="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 役職別比率 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #0071e3;">
+                        <path d="M3 3v18h18M7 16l4-4 4 4 6-6"/>
+                    </svg>
+                    役職別比率
+                </h2>
+                <div class="grid-4">
+                    <div class="form-group">
+                        <label class="form-label">L4</label>
+                        <input type="number" id="ratioL4" value="1.0" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">L5</label>
+                        <input type="number" id="ratioL5" value="1.2" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">TL</label>
+                        <input type="number" id="ratioTL" value="1.4" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">L6</label>
+                        <input type="number" id="ratioL6" value="1.6" step="0.1">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 幹事情報 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #86868b;">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    幹事情報
+                </h2>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">幹事の名前</label>
+                        <input type="text" id="organizerName" placeholder="山田太郎">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">支払い締め日</label>
+                        <input type="date" id="paymentDeadline">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">PayPayリンク</label>
+                        <input type="text" id="paypayLink" placeholder="https://qr.paypay.ne.jp/...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">銀行名</label>
+                        <input type="text" id="bankName" placeholder="○○銀行">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">支店名</label>
+                        <input type="text" id="branchName" placeholder="△△支店">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">口座番号</label>
+                        <input type="text" id="accountNumber" placeholder="1234567">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">口座名義</label>
+                        <input type="text" id="accountName" placeholder="ヤマダタロウ">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 参加者一覧 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #0071e3;">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    参加者一覧
+                </h2>
+                <div style="overflow-x: auto;">
+                    <table id="participantTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%">名前</th>
+                                <th style="width: 15%">役職</th>
+                                <th style="width: 10%">
+                                    <div class="checkbox-header">
+                                        <input type="checkbox" id="checkAllPrimary" onchange="checkAllColumn('primary')">
+                                        <label>一次会</label>
+                                    </div>
+                                </th>
+                                <th style="width: 10%">
+                                    <div class="checkbox-header">
+                                        <input type="checkbox" id="checkAllGift" onchange="checkAllColumn('gift')">
+                                        <label>送別品</label>
+                                    </div>
+                                </th>
+                                <th style="width: 10%">
+                                    <div class="checkbox-header">
+                                        <input type="checkbox" id="checkAllSecondary" onchange="checkAllColumn('secondary')">
+                                        <label>二次会</label>
+                                    </div>
+                                </th>
+                                <th style="width: 20%">支払額（円）</th>
+                                <th style="width: 15%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="participantTableBody">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="addParticipantRow()">参加者を追加</button>
+                    <button class="btn btn-success" onclick="calculate()">計算する</button>
+                </div>
+                <div id="diffDisplay"></div>
+            </div>
+            
+            <!-- Slackメッセージ -->
+            <div class="section">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #0071e3;">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Slackメッセージ
+                </h2>
+                <div class="slack-output" id="slackOutput">ここに生成されたメッセージが表示されます</div>
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="generateSlackMessage()">メッセージを生成</button>
+                    <button class="btn btn-success" onclick="copyToClipboard()">コピー</button>
+                </div>
+            </div>
+            
+            <!-- データ管理 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #86868b;">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v6m0 6v6m8.66-15.66l-4.24 4.24m-4.24 4.24l-4.24 4.24M23 12h-6m-6 0H1m20.66 8.66l-4.24-4.24m-4.24-4.24l-4.24-4.24"/>
+                    </svg>
+                    データ管理
+                </h2>
+                <div class="button-group">
+                    <button class="btn btn-danger" onclick="clearAllData()">すべてクリア</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const STORAGE_KEY = 'warikanManager';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFromStorage();
+            initializeParticipants();
+            attachGiftTableEvents();
+            attachInputEvents();
+        });
+        
+        function initializeParticipants() {
+            const tbody = document.getElementById('participantTableBody');
+            if (tbody.children.length === 0) {
+                for (let i = 0; i < 15; i++) {
+                    addParticipantRow();
+                }
+            }
+        }
+        
+        function attachGiftTableEvents() {
+            const tbody = document.getElementById('giftTableBody');
+            tbody.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const target = e.target;
+                    if (target.classList.contains('gift-item') || target.classList.contains('gift-amount')) {
+                        const row = target.closest('tr');
+                        const nextRow = row.nextElementSibling;
+                        if (nextRow) {
+                            nextRow.querySelector('.gift-item').focus();
+                        } else {
+                            addGiftRow();
+                            setTimeout(() => {
+                                const newRow = tbody.lastElementChild;
+                                newRow.querySelector('.gift-item').focus();
+                            }, 0);
+                        }
+                    }
+                }
+            });
+            
+            tbody.addEventListener('input', function(e) {
+                if (e.target.classList.contains('gift-amount')) {
+                    updateGiftTotal();
+                    saveToStorage();
+                }
+            });
+            
+            tbody.addEventListener('input', function(e) {
+                if (e.target.classList.contains('gift-item')) {
+                    saveToStorage();
+                }
+            });
+        }
+        
+        function attachInputEvents() {
+            const inputs = ['primaryTotal', 'secondaryTotal', 'ratioL4', 'ratioL5', 'ratioTL', 'ratioL6',
+                          'organizerName', 'paymentDeadline', 'paypayLink', 'bankName', 'branchName', 
+                          'accountNumber', 'accountName'];
+            
+            inputs.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.addEventListener('input', saveToStorage);
+                }
+            });
+        }
+        
+        function addGiftRow() {
+            const tbody = document.getElementById('giftTableBody');
+            const row = tbody.insertRow();
+            row.innerHTML = `
+                <td><input type="text" class="gift-item" placeholder="例: プレゼント"></td>
+                <td><input type="number" class="gift-amount" placeholder="0"></td>
+                <td><button class="btn btn-danger btn-small" onclick="deleteGiftRow(this)">削除</button></td>
+            `;
+        }
+        
+        function deleteGiftRow(btn) {
+            const row = btn.closest('tr');
+            row.remove();
+            updateGiftTotal();
+            saveToStorage();
+        }
+        
+        function updateGiftTotal() {
+            const amounts = document.querySelectorAll('.gift-amount');
+            let total = 0;
+            amounts.forEach(input => {
+                const value = parseFloat(input.value) || 0;
+                total += value;
+            });
+            document.getElementById('giftTotal').textContent = '¥' + total.toLocaleString();
+        }
+        
+        function addParticipantRow() {
+            const tbody = document.getElementById('participantTableBody');
+            const row = tbody.insertRow();
+            row.innerHTML = `
+                <td><input type="text" class="participant-name" placeholder="名前"></td>
+                <td>
+                    <select class="participant-role">
+                        <option value="L4">L4</option>
+                        <option value="L5">L5</option>
+                        <option value="TL">TL</option>
+                        <option value="L6">L6</option>
+                    </select>
+                </td>
+                <td style="text-align: center;"><input type="checkbox" class="check-primary"></td>
+                <td style="text-align: center;"><input type="checkbox" class="check-gift"></td>
+                <td style="text-align: center;"><input type="checkbox" class="check-secondary"></td>
+                <td><input type="text" class="payment-amount" readonly style="background: #f5f5f7; font-weight: 600;"></td>
+                <td><button class="btn btn-danger btn-small" onclick="deleteParticipantRow(this)">削除</button></td>
+            `;
+            
+            const nameInput = row.querySelector('.participant-name');
+            nameInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const currentRow = this.closest('tr');
+                    const nextRow = currentRow.nextElementSibling;
+                    if (nextRow) {
+                        nextRow.querySelector('.participant-name').focus();
+                    } else {
+                        addParticipantRow();
+                        setTimeout(() => {
+                            const newRow = tbody.lastElementChild;
+                            newRow.querySelector('.participant-name').focus();
+                        }, 0);
+                    }
+                }
+                if (e.key === 'Tab' && !e.shiftKey) {
+                    e.preventDefault();
+                    const currentRow = this.closest('tr');
+                    const nextRow = currentRow.nextElementSibling;
+                    if (nextRow) {
+                        nextRow.querySelector('.participant-name').focus();
+                    } else {
+                        addParticipantRow();
+                        setTimeout(() => {
+                            const newRow = tbody.lastElementChild;
+                            newRow.querySelector('.participant-name').focus();
+                        }, 0);
+                    }
+                }
+            });
+            
+            const inputs = row.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('change', saveToStorage);
+                input.addEventListener('input', saveToStorage);
+            });
+        }
+        
+        function deleteParticipantRow(btn) {
+            const row = btn.closest('tr');
+            row.remove();
+            saveToStorage();
+        }
+        
+        function checkAllColumn(type) {
+            const checkboxId = 'checkAll' + type.charAt(0).toUpperCase() + type.slice(1);
+            const isChecked = document.getElementById(checkboxId).checked;
+            const checkboxes = document.querySelectorAll('.check-' + type);
+            checkboxes.forEach(cb => {
+                cb.checked = isChecked;
+            });
+            saveToStorage();
+        }
+        
+        function calculate() {
+            const giftTotal = getGiftTotal();
+            const primaryTotal = parseFloat(document.getElementById('primaryTotal').value) || 0;
+            const secondaryTotal = parseFloat(document.getElementById('secondaryTotal').value) || 0;
+            
+            const ratios = {
+                'L4': parseFloat(document.getElementById('ratioL4').value) || 1.0,
+                'L5': parseFloat(document.getElementById('ratioL5').value) || 1.2,
+                'TL': parseFloat(document.getElementById('ratioTL').value) || 1.4,
+                'L6': parseFloat(document.getElementById('ratioL6').value) || 1.6
+            };
+            
+            const rows = document.querySelectorAll('#participantTableBody tr');
+            const participants = [];
+            
+            rows.forEach(row => {
+                const name = row.querySelector('.participant-name').value.trim();
+                if (name) {
+                    participants.push({
+                        row: row,
+                        name: name,
+                        role: row.querySelector('.participant-role').value,
+                        primary: row.querySelector('.check-primary').checked,
+                        gift: row.querySelector('.check-gift').checked,
+                        secondary: row.querySelector('.check-secondary').checked,
+                        ratio: ratios[row.querySelector('.participant-role').value]
+                    });
+                }
+            });
+            
+            const giftCalc = calculateCategory(participants.filter(p => p.gift), giftTotal, ratios);
+            const primaryCalc = calculateCategory(participants.filter(p => p.primary), primaryTotal, ratios);
+            const secondaryCalc = calculateCategory(participants.filter(p => p.secondary), secondaryTotal, ratios);
+            
+            let totalCalculated = 0;
+            participants.forEach(p => {
+                let amount = 0;
+                if (p.gift) amount += giftCalc.payments[p.name] || 0;
+                if (p.primary) amount += primaryCalc.payments[p.name] || 0;
+                if (p.secondary) amount += secondaryCalc.payments[p.name] || 0;
+                
+                p.row.querySelector('.payment-amount').value = '¥' + amount.toLocaleString();
+                p.row.classList.add('row-calculated');
+                totalCalculated += amount;
+            });
+            
+            rows.forEach(row => {
+                const name = row.querySelector('.participant-name').value.trim();
+                if (!name) {
+                    row.classList.add('hidden-row');
+                } else {
+                    row.classList.remove('hidden-row');
+                }
+            });
+            
+            const actualTotal = giftTotal + primaryTotal + secondaryTotal;
+            const diff = totalCalculated - actualTotal;
+            const diffDisplay = document.getElementById('diffDisplay');
+            
+            if (diff === 0) {
+                diffDisplay.className = 'diff-display diff-zero';
+                diffDisplay.innerHTML = '差分: ¥0（ピッタリ！）';
+            } else if (diff > 0) {
+                diffDisplay.className = 'diff-display diff-positive';
+                diffDisplay.innerHTML = '差分: +¥' + diff.toLocaleString() + '（按分合計が実費より多い）';
+            } else {
+                diffDisplay.className = 'diff-display diff-negative';
+                diffDisplay.innerHTML = '差分: -¥' + Math.abs(diff).toLocaleString() + '（按分合計が実費より少ない）';
+            }
+            
+            saveToStorage();
+        }
+        
+        function calculateCategory(participants, total, ratios) {
+            if (participants.length === 0 || total === 0) {
+                return { payments: {}, totalPaid: 0 };
+            }
+            
+            const totalRatio = participants.reduce((sum, p) => sum + p.ratio, 0);
+            const payments = {};
+            let totalPaid = 0;
+            
+            participants.forEach(p => {
+                const amount = Math.ceil((total * p.ratio) / totalRatio);
+                payments[p.name] = amount;
+                totalPaid += amount;
+            });
+            
+            return { payments, totalPaid };
+        }
+        
+        function getGiftTotal() {
+            const amounts = document.querySelectorAll('.gift-amount');
+            let total = 0;
+            amounts.forEach(input => {
+                total += parseFloat(input.value) || 0;
+            });
+            return total;
+        }
+        
+        function generateSlackMessage() {
+            const giftTotal = getGiftTotal();
+            const primaryTotal = parseFloat(document.getElementById('primaryTotal').value) || 0;
+            const secondaryTotal = parseFloat(document.getElementById('secondaryTotal').value) || 0;
+            const totalAmount = giftTotal + primaryTotal + secondaryTotal;
+            
+            const organizerName = document.getElementById('organizerName').value || '幹事';
+            const deadline = document.getElementById('paymentDeadline').value;
+            const paypayLink = document.getElementById('paypayLink').value;
+            const bankName = document.getElementById('bankName').value;
+            const branchName = document.getElementById('branchName').value;
+            const accountNumber = document.getElementById('accountNumber').value;
+            const accountName = document.getElementById('accountName').value;
+            
+            let message = '【歓送迎会 会費のお知らせ】\n\n';
+            message += '=== 内訳 ===\n';
+            
+            if (giftTotal > 0) {
+                message += '■ 送別品\n';
+                const giftItems = document.querySelectorAll('#giftTableBody tr');
+                giftItems.forEach(row => {
+                    const item = row.querySelector('.gift-item').value;
+                    const amount = parseFloat(row.querySelector('.gift-amount').value) || 0;
+                    if (item && amount > 0) {
+                        message += `  ・${item}: ¥${amount.toLocaleString()}\n`;
+                    }
+                });
+                message += `  小計: ¥${giftTotal.toLocaleString()}\n\n`;
+            }
+            
+            if (primaryTotal > 0) {
+                message += `■ 一次会: ¥${primaryTotal.toLocaleString()}\n`;
+            }
+            if (secondaryTotal > 0) {
+                message += `■ 二次会: ¥${secondaryTotal.toLocaleString()}\n`;
+            }
+            
+            message += `\n【総額】¥${totalAmount.toLocaleString()}\n\n`;
+            message += '=== 各自の支払額 ===\n';
+            
+            const rows = document.querySelectorAll('#participantTableBody tr:not(.hidden-row)');
+            rows.forEach(row => {
+                const name = row.querySelector('.participant-name').value.trim();
+                const amount = row.querySelector('.payment-amount').value;
+                if (name && amount) {
+                    message += `${name}: ${amount}\n`;
+                }
+            });
+            
+            message += '\n=== お支払い方法 ===\n';
+            
+            if (paypayLink) {
+                message += `【PayPay】\n${paypayLink}\n\n`;
+            }
+            
+            if (bankName && accountNumber) {
+                message += '【銀行振込】\n';
+                if (bankName) message += `銀行名: ${bankName}\n`;
+                if (branchName) message += `支店名: ${branchName}\n`;
+                if (accountNumber) message += `口座番号: ${accountNumber}\n`;
+                if (accountName) message += `口座名義: ${accountName}\n`;
+                message += '\n';
+            }
+            
+            if (deadline) {
+                const date = new Date(deadline);
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+                message += `⏰ お支払い期限: ${month}月${day}日までに\n\n`;
+            }
+            
+            message += `お問い合わせ: ${organizerName}\n`;
+            message += '\nよろしくお願いいたします！';
+            
+            document.getElementById('slackOutput').textContent = message;
+        }
+        
+        function copyToClipboard() {
+            const text = document.getElementById('slackOutput').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ クリップボードにコピーしました！');
+            }).catch(err => {
+                alert('❌ コピーに失敗しました: ' + err);
+            });
+        }
+        
+        function saveToStorage() {
+            const data = {
+                gifts: [],
+                primaryTotal: document.getElementById('primaryTotal').value,
+                secondaryTotal: document.getElementById('secondaryTotal').value,
+                ratios: {
+                    L4: document.getElementById('ratioL4').value,
+                    L5: document.getElementById('ratioL5').value,
+                    TL: document.getElementById('ratioTL').value,
+                    L6: document.getElementById('ratioL6').value
+                },
+                organizer: {
+                    name: document.getElementById('organizerName').value,
+                    deadline: document.getElementById('paymentDeadline').value,
+                    paypay: document.getElementById('paypayLink').value,
+                    bank: document.getElementById('bankName').value,
+                    branch: document.getElementById('branchName').value,
+                    account: document.getElementById('accountNumber').value,
+                    accountName: document.getElementById('accountName').value
+                },
+                participants: []
+            };
+            
+            document.querySelectorAll('#giftTableBody tr').forEach(row => {
+                const item = row.querySelector('.gift-item').value;
+                const amount = row.querySelector('.gift-amount').value;
+                data.gifts.push({ item, amount });
+            });
+            
+            document.querySelectorAll('#participantTableBody tr').forEach(row => {
+                const name = row.querySelector('.participant-name').value;
+                const role = row.querySelector('.participant-role').value;
+                const primary = row.querySelector('.check-primary').checked;
+                const gift = row.querySelector('.check-gift').checked;
+                const secondary = row.querySelector('.check-secondary').checked;
+                data.participants.push({ name, role, primary, gift, secondary });
+            });
+            
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+        
+        function loadFromStorage() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (!saved) return;
+            
+            try {
+                const data = JSON.parse(saved);
+                
+                if (data.primaryTotal) document.getElementById('primaryTotal').value = data.primaryTotal;
+                if (data.secondaryTotal) document.getElementById('secondaryTotal').value = data.secondaryTotal;
+                
+                if (data.ratios) {
+                    document.getElementById('ratioL4').value = data.ratios.L4 || 1.0;
+                    document.getElementById('ratioL5').value = data.ratios.L5 || 1.2;
+                    document.getElementById('ratioTL').value = data.ratios.TL || 1.4;
+                    document.getElementById('ratioL6').value = data.ratios.L6 || 1.6;
+                }
+                
+                if (data.organizer) {
+                    document.getElementById('organizerName').value = data.organizer.name || '';
+                    document.getElementById('paymentDeadline').value = data.organizer.deadline || '';
+                    document.getElementById('paypayLink').value = data.organizer.paypay || '';
+                    document.getElementById('bankName').value = data.organizer.bank || '';
+                    document.getElementById('branchName').value = data.organizer.branch || '';
+                    document.getElementById('accountNumber').value = data.organizer.account || '';
+                    document.getElementById('accountName').value = data.organizer.accountName || '';
+                }
+                
+                if (data.gifts && data.gifts.length > 0) {
+                    const tbody = document.getElementById('giftTableBody');
+                    tbody.innerHTML = '';
+                    data.gifts.forEach(gift => {
+                        const row = tbody.insertRow();
+                        row.innerHTML = `
+                            <td><input type="text" class="gift-item" value="${gift.item}"></td>
+                            <td><input type="number" class="gift-amount" value="${gift.amount}"></td>
+                            <td><button class="btn btn-danger btn-small" onclick="deleteGiftRow(this)">削除</button></td>
+                        `;
+                    });
+                    updateGiftTotal();
+                }
+                
+                if (data.participants && data.participants.length > 0) {
+                    const tbody = document.getElementById('participantTableBody');
+                    tbody.innerHTML = '';
+                    data.participants.forEach(p => {
+                        const row = tbody.insertRow();
+                        row.innerHTML = `
+                            <td><input type="text" class="participant-name" value="${p.name}"></td>
+                            <td>
+                                <select class="participant-role">
+                                    <option value="L4" ${p.role === 'L4' ? 'selected' : ''}>L4</option>
+                                    <option value="L5" ${p.role === 'L5' ? 'selected' : ''}>L5</option>
+                                    <option value="TL" ${p.role === 'TL' ? 'selected' : ''}>TL</option>
+                                    <option value="L6" ${p.role === 'L6' ? 'selected' : ''}>L6</option>
+                                </select>
+                            </td>
+                            <td style="text-align: center;"><input type="checkbox" class="check-primary" ${p.primary ? 'checked' : ''}></td>
+                            <td style="text-align: center;"><input type="checkbox" class="check-gift" ${p.gift ? 'checked' : ''}></td>
+                            <td style="text-align: center;"><input type="checkbox" class="check-secondary" ${p.secondary ? 'checked' : ''}></td>
+                            <td><input type="text" class="payment-amount" readonly style="background: #f5f5f7; font-weight: 600;"></td>
+                            <td><button class="btn btn-danger btn-small" onclick="deleteParticipantRow(this)">削除</button></td>
+                        `;
+                        
+                        const nameInput = row.querySelector('.participant-name');
+                        nameInput.addEventListener('keydown', function(e) {
+                            if (e.key === 'Enter') {
+                                e.preventDefault();
+                                const currentRow = this.closest('tr');
+                                const nextRow = currentRow.nextElementSibling;
+                                if (nextRow) {
+                                    nextRow.querySelector('.participant-name').focus();
+                                } else {
+                                    addParticipantRow();
+                                    setTimeout(() => {
+                                        const newRow = tbody.lastElementChild;
+                                        newRow.querySelector('.participant-name').focus();
+                                    }, 0);
+                                }
+                            }
+                            if (e.key === 'Tab' && !e.shiftKey) {
+                                e.preventDefault();
+                                const currentRow = this.closest('tr');
+                                const nextRow = currentRow.nextElementSibling;
+                                if (nextRow) {
+                                    nextRow.querySelector('.participant-name').focus();
+                                } else {
+                                    addParticipantRow();
+                                    setTimeout(() => {
+                                        const newRow = tbody.lastElementChild;
+                                        newRow.querySelector('.participant-name').focus();
+                                    }, 0);
+                                }
+                            }
+                        });
+                        
+                        const inputs = row.querySelectorAll('input, select');
+                        inputs.forEach(input => {
+                            input.addEventListener('change', saveToStorage);
+                            input.addEventListener('input', saveToStorage);
+                        });
+                    });
+                }
+            } catch (e) {
+                console.error('データの読み込みに失敗:', e);
+            }
+        }
+        
+        function clearAllData() {
+            if (confirm('本当にすべてのデータをクリアしますか？この操作は取り消せません。')) {
+                localStorage.removeItem(STORAGE_KEY);
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
