@@ -250,11 +250,12 @@ select.input option{background:rgba(255,255,255,0.95);color:var(--text);}
   <div class="sidebar-brand"><span>EITS</span> Warikan</div>
   <ul class="agenda-list">
     <li class="agenda-item" data-step="0" onclick="goTo(0)"><span class="step-num">1</span>メンバー</li>
-    <li class="agenda-item" data-step="1" onclick="goTo(1)"><span class="step-num">2</span>送別品</li>
-    <li class="agenda-item" data-step="2" onclick="goTo(2)"><span class="step-num">3</span>金額</li>
-    <li class="agenda-item" data-step="3" onclick="goTo(3)"><span class="step-num">4</span>参加</li>
-    <li class="agenda-item" data-step="4" onclick="goTo(4)"><span class="step-num">5</span>結果</li>
-    <li class="agenda-item" data-step="5" onclick="goTo(5)"><span class="step-num">6</span>共有</li>
+    <li class="agenda-item" data-step="1" onclick="goTo(1)"><span class="step-num">2</span>参加</li>
+    <li class="agenda-item" data-step="2" onclick="goTo(2)"><span class="step-num">3</span>送別品</li>
+    <li class="agenda-item" data-step="3" onclick="goTo(3)"><span class="step-num">4</span>飲食費</li>
+    <li class="agenda-item" data-step="4" onclick="goTo(4)"><span class="step-num">5</span>比率</li>
+    <li class="agenda-item" data-step="5" onclick="goTo(5)"><span class="step-num">6</span>結果</li>
+    <li class="agenda-item" data-step="6" onclick="goTo(6)"><span class="step-num">7</span>共有</li>
   </ul>
 </nav>
 
@@ -301,53 +302,8 @@ select.input option{background:rgba(255,255,255,0.95);color:var(--text);}
 </div>
 
 <!-- PAGE 1: Gift -->
+
 <div class="card-page" data-page="1">
-<div class="card">
-  <div class="card-title">送別品・プレゼント</div>
-  <div style="margin-bottom:12px;font-size:0.75rem;color:var(--text-tertiary);">品目と金額を入力して追加してください</div>
-  <div class="form-row">
-    <input class="input" style="flex:1;" id="giftDesc" placeholder="品目（例：花束）" onkeydown="if(event.key==='Enter')document.getElementById('giftAmt').focus();">
-    <input class="input" style="width:120px;" id="giftAmt" type="number" placeholder="金額" onkeydown="if(event.key==='Enter')addGift();">
-  </div>
-  <button class="btn btn-filled" onclick="addGift()" style="margin-top:8px;">送別品を追加</button>
-  <div id="giftList" style="margin-top:12px;"></div>
-  <div id="giftTotal" style="margin-top:8px;font-size:0.78rem;color:var(--text-secondary);"></div>
-  <div style="margin-top:12px;font-size:0.72rem;color:var(--text-tertiary);">※ 送別品がない場合はこのページをスキップしてOK</div>
-</div>
-</div>
-
-<!-- PAGE 2: Amount -->
-<div class="card-page" data-page="2">
-<div class="card">
-  <div class="card-title">金額設定</div>
-  <div style="margin-bottom:14px;">
-    <label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:4px;">合計金額（税込）</label>
-    <input class="input" id="totalAmount" type="number" placeholder="例: 150000" style="width:200px;" onkeydown="if(event.key==='Enter')calculate();">
-  </div>
-  <details style="margin-top:12px;">
-    <summary style="font-size:0.75rem;color:var(--text-tertiary);cursor:pointer;">1人あたり × 人数で計算</summary>
-    <div class="form-row" style="margin-top:8px;">
-      <input class="input input-sm" id="perPerson" type="number" placeholder="1人あたり" style="width:120px;">
-      <span style="font-size:0.8rem;color:var(--text-secondary);">×</span>
-      <input class="input input-sm" id="headCount" type="number" placeholder="人数" style="width:80px;">
-      <button class="btn btn-outline btn-sm" onclick="calcFromPer()">反映</button>
-    </div>
-  </details>
-  <div style="margin-top:18px;">
-    <label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:6px;">比率</label>
-    <div class="form-row">
-      <span style="font-size:0.75rem;width:26px;color:var(--text-secondary);">L4</span><input class="input input-sm ratio-input" data-role="L4" type="number" step="0.1" value="1.0" style="width:60px;" onkeydown="if(event.key==='Enter')calculate();">
-      <span style="font-size:0.75rem;width:26px;color:var(--text-secondary);">L5</span><input class="input input-sm ratio-input" data-role="L5" type="number" step="0.1" value="1.3" style="width:60px;" onkeydown="if(event.key==='Enter')calculate();">
-      <span style="font-size:0.75rem;width:26px;color:var(--text-secondary);">TL</span><input class="input input-sm ratio-input" data-role="TL" type="number" step="0.1" value="1.5" style="width:60px;" onkeydown="if(event.key==='Enter')calculate();">
-      <span style="font-size:0.75rem;width:26px;color:var(--text-secondary);">L6</span><input class="input input-sm ratio-input" data-role="L6" type="number" step="0.1" value="2.0" style="width:60px;" onkeydown="if(event.key==='Enter')calculate();">
-    </div>
-  </div>
-  <button class="btn btn-filled" onclick="confirmAmount()" style="margin-top:16px;">金額を確定</button>
-</div>
-</div>
-
-<!-- PAGE 3: Attendance -->
-<div class="card-page" data-page="3">
 <div class="card">
   <div class="card-title">参加チェック</div>
   <div class="btn-group">
@@ -371,7 +327,66 @@ select.input option{background:rgba(255,255,255,0.95);color:var(--text);}
 </div>
 
 <!-- PAGE 4: Results -->
+
+<div class="card-page" data-page="2">
+<div class="card">
+  <div class="card-title">送別品・プレゼント</div>
+  <div style="margin-bottom:12px;font-size:0.75rem;color:var(--text-tertiary);">品目と金額を入力して追加してください</div>
+  <div class="form-row">
+    <input class="input" style="flex:1;" id="giftDesc" placeholder="品目（例：花束）" onkeydown="if(event.key==='Enter')document.getElementById('giftAmt').focus();">
+    <input class="input" style="width:120px;" id="giftAmt" type="number" placeholder="金額" onkeydown="if(event.key==='Enter')addGift();">
+  </div>
+  <button class="btn btn-filled" onclick="addGift()" style="margin-top:8px;">送別品を追加</button>
+  <div id="giftList" style="margin-top:12px;"></div>
+  <div id="giftTotal" style="margin-top:8px;font-size:0.78rem;color:var(--text-secondary);"></div>
+  <div style="margin-top:12px;font-size:0.72rem;color:var(--text-tertiary);">※ 送別品がない場合はこのページをスキップしてOK</div>
+</div>
+</div>
+
+<!-- PAGE 2: Amount -->
+
+<div class="card-page" data-page="3">
+<div class="card">
+  <div class="card-title">飲食費入力</div>
+  <div style="margin-bottom:14px;">
+    <label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:4px;">1次会 合計金額（税込）</label>
+    <input class="input" id="totalAmount" type="number" placeholder="例: 150000" style="width:200px;">
+  </div>
+  <details style="margin-top:12px;">
+    <summary style="font-size:0.75rem;color:var(--text-tertiary);cursor:pointer;">1人あたり × 人数で計算</summary>
+    <div class="form-row" style="margin-top:8px;">
+      <input class="input input-sm" id="perPerson" type="number" placeholder="1人あたり" style="width:120px;">
+      <span style="font-size:0.8rem;color:var(--text-secondary);">×</span>
+      <input class="input input-sm" id="headCount" type="number" placeholder="人数" style="width:80px;">
+      <button class="btn btn-outline btn-sm" onclick="calcFromPer()">反映</button>
+    </div>
+  </details>
+  <div style="margin-top:18px;">
+    <label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:4px;">2次会 合計金額（税込）</label>
+    <input class="input" id="totalAmount2" type="number" placeholder="2次会がなければ空欄" style="width:200px;">
+  </div>
+  <button class="btn btn-tonal" onclick="markDone(3);goTo(4);" style="margin-top:18px;">次へ</button>
+</div>
+</div>
+
 <div class="card-page" data-page="4">
+<div class="card">
+  <div class="card-title">ジョブレベル別比率設定</div>
+  <div style="margin-bottom:12px;">
+    <label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:6px;">各レベルの負担比率</label>
+    <div class="form-row">
+      <span style="font-size:0.75rem;width:26px;color:var(--text-secondary);">L4</span><input class="input input-sm ratio-input" data-role="L4" type="number" step="0.1" value="1.0" style="width:60px;">
+      <span style="font-size:0.75rem;width:26px;color:var(--text-secondary);">L5</span><input class="input input-sm ratio-input" data-role="L5" type="number" step="0.1" value="1.3" style="width:60px;">
+      <span style="font-size:0.75rem;width:26px;color:var(--text-secondary);">TL</span><input class="input input-sm ratio-input" data-role="TL" type="number" step="0.1" value="1.5" style="width:60px;">
+      <span style="font-size:0.75rem;width:26px;color:var(--text-secondary);">L6</span><input class="input input-sm ratio-input" data-role="L6" type="number" step="0.1" value="2.0" style="width:60px;">
+    </div>
+  </div>
+  <p style="font-size:0.7rem;color:var(--text-tertiary);margin-bottom:16px;">L4=1.0 を基準に、上位が多く負担します。送別品・飲食費の両方に適用されます。</p>
+  <button class="btn btn-primary" onclick="calculate();" style="width:100%;">計算する</button>
+</div>
+</div>
+
+<div class="card-page" data-page="5">
 <div class="card">
   <div class="card-title">支払い一覧</div>
   <div id="resultsTotals" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;"></div>
@@ -384,7 +399,8 @@ select.input option{background:rgba(255,255,255,0.95);color:var(--text);}
 </div>
 
 <!-- PAGE 5: Slack + Data -->
-<div class="card-page" data-page="5">
+
+<div class="card-page" data-page="6">
 <div class="card">
   <div class="card-title">Slack連絡文 / データ管理</div>
   <div style="margin-bottom:16px;">
@@ -482,12 +498,12 @@ function checkPw(){
 let members=[],gifts=[],results=[];
 const PAID_MEMBERS=[
   {name:'Hayashi Saki',role:'TL'},{name:'Izawa Mariko',role:'TL'},
-  {name:'Nakamura Toru',role:'L6'},{name:'Oh Moonsun',role:'L5'},
+  {name:'Oh Moonsun',role:'L5'},
   {name:'Oki Ryosuke',role:'L5'},{name:'Nakajima Ryota',role:'L6'},
   {name:'Naito Saki',role:'L4'},{name:'Murakami Arisa',role:'L5'},
   {name:'Sato Ayumu',role:'L5'},{name:'Mori Daisuke',role:'L5'},
   {name:'Hama Ayaka',role:'L5'},{name:'Lee Yun',role:'L4'},
-  {name:'Tsuchiya Ryota',role:'L4'},{name:'Masuda Mantaro',role:'TL'},
+  {name:'Masuda Mantaro',role:'TL'},
   {name:'Sakata Rokutoshi',role:'L5'},{name:'Shinozuka Tomohiro',role:'L5'},
   {name:'Gao Yuan',role:'L4'},{name:'Inoue Atsushi',role:'TL'},
   {name:'Mita Ryohei',role:'L4'},{name:'Hata Yasunori',role:'TL'},
@@ -546,16 +562,21 @@ function setupWheelControl(){
   // Wheel: accumulate delta, navigate on threshold
   let accDelta=0;
   let rafPending=false;
-  const THRESHOLD=60; // pixels of accumulated scroll before page change
+  const THRESHOLD=120; // pixels of accumulated scroll before page change
   
   scroller.addEventListener('wheel',function(e){
     // Allow inner scrollable elements to scroll normally
     let el=e.target;
     while(el&&el!==scroller){
       if(el.scrollHeight>el.clientHeight+4){
-        const atTop=el.scrollTop<=0&&e.deltaY<0;
-        const atBottom=el.scrollTop+el.clientHeight>=el.scrollHeight-1&&e.deltaY>0;
+        const atTop=el.scrollTop<=2&&e.deltaY<0;
+        const atBottom=el.scrollTop+el.clientHeight>=el.scrollHeight-4&&e.deltaY>0;
         if(!atTop&&!atBottom)return; // let inner element scroll
+        // Require 2 consecutive edge-hits before allowing page change
+        if(!el._edgeHits)el._edgeHits=0;
+        el._edgeHits++;
+        if(el._edgeHits<3)return;
+        el._edgeHits=0;
       }
       el=el.parentElement;
     }
@@ -583,15 +604,22 @@ function setupWheelControl(){
   // Reset accumulator on lock release (prevent stale delta)
   const origTimeout=setTimeout;
   
-  // Touch support
-  let touchY=0;
+  // Touch support - ignore swipes inside scrollable containers
+  let touchY=0,touchStartEl=null;
   scroller.addEventListener('touchstart',function(e){
     touchY=e.touches[0].clientY;
+    touchStartEl=e.target;
   },{passive:true});
   scroller.addEventListener('touchend',function(e){
     if(scrollLock)return;
+    // Check if touch started inside a scrollable element
+    let el=touchStartEl;
+    while(el&&el!==scroller){
+      if(el.scrollHeight>el.clientHeight+4)return; // swipe inside scrollable area, ignore
+      el=el.parentElement;
+    }
     const diff=touchY-e.changedTouches[0].clientY;
-    if(Math.abs(diff)<50)return;
+    if(Math.abs(diff)<100)return;
     scrollLock=true;
     const dir=diff>0?1:-1;
     goToPage(currentPage+dir);
@@ -700,8 +728,9 @@ function calcFromPer(){
 // ===== CALCULATE =====
 function calculate(){
   const total=parseInt(document.getElementById('totalAmount').value)||0;
+  const total2=parseInt(document.getElementById('totalAmount2')?.value)||0;
   if(!members.length){alert('メンバーを設定してください');return;}
-  if(!total&&!gifts.length){alert('金額または送別品を設定してください');return;}
+  if(!total&&!total2&&!gifts.length){alert('金額または送別品を設定してください');return;}
   const ratios={};
   document.querySelectorAll('.ratio-input').forEach(el=>{ratios[el.dataset.role]=parseFloat(el.value)||1;});
   
@@ -711,29 +740,40 @@ function calculate(){
   const soubetWeight=soubetMembers.reduce((s,m)=>s+(ratios[m.role]||1),0);
   const giftBase=soubetWeight?giftTotal/soubetWeight:0;
   
-  // Party: weighted split among 1次-checked members
+  // 1次: weighted split among ichi-checked members
   const ichiMembers=members.filter(m=>m.ichi);
   const ichiWeight=ichiMembers.reduce((s,m)=>s+(ratios[m.role]||1),0);
   const ichiBase=ichiWeight?total/ichiWeight:0;
 
+  // 2次: weighted split among ni-checked members
+  const niMembers=members.filter(m=>m.ni);
+  const niWeight=niMembers.reduce((s,m)=>s+(ratios[m.role]||1),0);
+  const niBase=niWeight?total2/niWeight:0;
+
   results=members.map(m=>{
-    let giftAmt=0, partyAmt=0;
+    let giftAmt=0, partyAmt=0, niAmt=0;
     if(m.soubet) giftAmt=Math.ceil((giftBase*(ratios[m.role]||1))/100)*100;
     if(m.ichi) partyAmt=Math.ceil((ichiBase*(ratios[m.role]||1))/100)*100;
-    return{name:m.name,role:m.role,amount:giftAmt+partyAmt,gift:giftAmt,party:partyAmt};
+    if(m.ni) niAmt=Math.ceil((niBase*(ratios[m.role]||1))/100)*100;
+    return{name:m.name,role:m.role,amount:giftAmt+partyAmt+niAmt,gift:giftAmt,party:partyAmt,ni:niAmt};
   });
   
-  const grandTotal=total+giftTotal;
+  const grandTotal=total+total2+giftTotal;
   renderResults(grandTotal);
-  markDone(3);
-  markDone(4);
-  goTo(4);
+  markDone(5);
+  goTo(5);
 }
 function renderResults(total){
   const tb=document.getElementById('resultsBody');
   const hasGifts=gifts.length>0;
   if(hasGifts){
-    tb.innerHTML=results.map(r=>`<tr><td>${r.name}</td><td>${r.role}</td><td style="font-size:0.68rem;color:var(--text-tertiary);">飲:¥${r.party.toLocaleString()} 品:¥${r.gift.toLocaleString()}</td><td style="text-align:right;font-weight:600;color:var(--blue);white-space:nowrap;">¥${r.amount.toLocaleString()}</td></tr>`).join('');
+    tb.innerHTML=results.map(r=>{
+      let detail='';
+      if(r.party)detail+='1次:¥'+r.party.toLocaleString();
+      if(r.ni)detail+=(detail?' ':'')+'2次:¥'+r.ni.toLocaleString();
+      if(r.gift)detail+=(detail?' ':'')+'品:¥'+r.gift.toLocaleString();
+      return `<tr><td>${r.name}</td><td>${r.role}</td><td style="font-size:0.68rem;color:var(--text-tertiary);">${detail}</td><td style="text-align:right;font-weight:600;color:var(--blue);white-space:nowrap;">¥${r.amount.toLocaleString()}</td></tr>`;
+    }).join('');
   } else {
     tb.innerHTML=results.map(r=>`<tr><td>${r.name}</td><td>${r.role}</td><td>¥${r.amount.toLocaleString()}</td></tr>`).join('');
   }
@@ -793,7 +833,7 @@ function genSlack(){
   if(deadlineStr) msg+=`\n【期限】\n${deadlineStr}までにお願いします！\n`;
   msg+='\nよろしくお願いします！';
   document.getElementById('slackMsg').value=msg;
-  markDone(5);
+  markDone(6);
 }
 function copySlack(){
   const t=document.getElementById('slackMsg');t.select();
@@ -843,7 +883,7 @@ function markDone(i){
   const item=document.querySelectorAll('.agenda-item')[i];
   if(item)item.classList.add('done');
 }
-function confirmAmount(){
+function confirmAmount_old(){
   const total=parseInt(document.getElementById('totalAmount').value)||0;
   if(!total){alert('金額を入力してください');return;}
   markDone(2);
@@ -902,6 +942,15 @@ function updateYenDisplay(progress){
   });
 }
 
+
+// Auto-recalculate when inputs change
+function setupAutoRecalc(){
+  document.querySelectorAll('.ratio-input, #totalAmount, #totalAmount2').forEach(el=>{
+    el.addEventListener('change',()=>{if(results.length)calculate();});
+    el.addEventListener('input',()=>{clearTimeout(el._debounce);el._debounce=setTimeout(()=>{if(results.length)calculate();},500);});
+  });
+}
+document.addEventListener('DOMContentLoaded',setupAutoRecalc);
 </script>
 </body>
 </html>
