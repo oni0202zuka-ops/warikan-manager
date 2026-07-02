@@ -1,345 +1,6 @@
 <!DOCTYPE html>
-<html lang="ja"><head><style id="qw-theme">:root {
-  --color-bg: #f2f1f4;
-  --color-text: #352f3d;
-  --color-navbar-bg: #eae8ed;
-  --color-bg-chat-view: #fcfcfd;
-  --color-bg-secondary: #ffffff;
-  --color-bg-tertiary: #eae8ed;
-  --color-bg-hover: #dcdadf;
-  --color-surface: #eae8ed;
-  --color-surface-hover: #dcdadf;
-  --color-surface-active: #c1bec6;
-  --color-border: #c1bec6;
-  --color-border-light: #dcdadf;
-  --color-border-strong: #c1bec6;
-  --color-primary: #4200db;
-  --color-primary-dark: #35009e;
-  --color-primary-light: #8575ff;
-  --color-primary-bg: #e8e6ff;
-  --color-primary-hover-border: #35009e;
-  --color-nav-icon-active: #4200db;
-  --color-nav-hover-border: #4200db;
-  --color-primary-alpha-3: color-mix(in srgb, #4200db 3%, transparent);
-  --color-primary-alpha-5: color-mix(in srgb, #4200db 5%, transparent);
-  --color-primary-alpha-8: color-mix(in srgb, #4200db 8%, transparent);
-  --color-primary-alpha-12: color-mix(in srgb, #4200db 12%, transparent);
-  --color-primary-alpha-15: color-mix(in srgb, #4200db 15%, transparent);
-  --color-primary-alpha-20: color-mix(in srgb, #4200db 20%, transparent);
-  --color-primary-alpha-25: color-mix(in srgb, #4200db 25%, transparent);
-  --color-primary-alpha-30: color-mix(in srgb, #4200db 30%, transparent);
-  --color-primary-alpha-40: color-mix(in srgb, #4200db 40%, transparent);
-  --color-primary-alpha-50: color-mix(in srgb, #4200db 50%, transparent);
-  --color-primary-alpha-60: color-mix(in srgb, #4200db 60%, transparent);
-  --color-primary-subtle: color-mix(in srgb, #4200db 18%, transparent);
-  --color-primary-border: #8575ff;
-  --color-focus-ring: color-mix(in srgb, #4200db 50%, transparent);
-  --color-sidebar-hover: color-mix(in srgb, #4200db 12%, transparent);
-  --color-accent: #4200db;
-  --color-accent-foreground: #4200db;
-  --color-accent-dark: #35009e;
-  --color-accent-light: #e8e6ff;
-  --color-accent-inverse: #ffffff;
-  --color-link: #4200db;
-  --color-primary-gradient-end: #e8e6ff;
-  --color-primary-bg-solid: #eae8ed;
-  --color-user-bubble: #F3F3F7;
-  --color-user-bubble-text: #352f3d;
-  --color-text-secondary: #5e5966;
-  --color-text-tertiary: #7a7582;
-  --color-text-muted: #938f9b;
-  --color-text-on-primary: #f2f1f4;
-  --color-success: #00802f;
-  --color-success-dark: #00471e;
-  --color-success-light: #d9ffd6;
-  --color-success-hover: #005c26;
-  --color-success-bg: #e6f4eb;
-  --color-success-border: #c4dccb;
-  --color-success-foreground: #00802f;
-  --color-success-dark-foreground: #00471e;
-  --color-success-text: #00471e;
-  --color-error: #db0000;
-  --color-error-dark: #700000;
-  --color-error-light: #ffe0e0;
-  --color-error-hover: #ffe0e0;
-  --color-error-bg: #fbe9ea;
-  --color-error-border: #eecbcd;
-  --color-error-active-border: #db0000;
-  --color-error-foreground: #db0000;
-  --color-error-dark-foreground: #700000;
-  --color-error-inverse: #ffffff;
-  --color-error-text: #700000;
-  --color-warning: #f2b100;
-  --color-warning-dark: #573a00;
-  --color-warning-light: #fffbbd;
-  --color-warning-hover: #db9200;
-  --color-warning-bg: #fdf6e4;
-  --color-warning-border: #f5dda6;
-  --color-warning-foreground: #f2b100;
-  --color-warning-dark-foreground: #573a00;
-  --color-warning-inverse: #573a00;
-  --color-surface-warning: #fffbbd;
-  --color-text-warning: #573a00;
-  --color-info: #006ce0;
-  --color-info-dark: #002a66;
-  --color-info-light: #d1f1ff;
-  --color-info-hover: #003b8f;
-  --color-info-bg: #e6f0fb;
-  --color-info-border: #c0d5ec;
-  --color-info-foreground: #006ce0;
-  --color-info-dark-foreground: #002a66;
-  --color-info-inverse: #ffffff;
-  --color-overlay: #dcdadf80;
-  --color-shadow: #352f3d40;
-  --color-hover: #352f3d0d;
-  --color-tooltip-bg: #eae8ed;
-  --color-tooltip-text: #352f3d;
-  --color-voice-purple: #8575ff;
-  --color-voice-purple-dark: #4200db;
-  --color-voice-purple-light: #8575ff;
-  --color-voice-red: #db0000;
-  --color-voice-red-dark: #700000;
-  --color-voice-amber: #f2b100;
-  --color-voice-purple-glow: rgba(66, 0, 219, .4);
-  --color-voice-red-glow: rgba(219, 0, 0, .4);
-  --font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: "SF Mono", "Monaco", "Menlo", "Consolas", monospace;
-  --text-2xs: .5625rem;
-  --text-xs: .625rem;
-  --text-sm: .6875rem;
-  --text-base: .75rem;
-  --text-md: .8125rem;
-  --text-lg: .875rem;
-  --text-xl: 1rem;
-  --text-2xl: 1.125rem;
-  --text-3xl: 1.25rem;
-  --text-4xl: 1.5rem;
-  --text-5xl: 2rem;
-  --spacing-1: calc(.25rem * 1);
-  --spacing-1-5: calc(.25rem * 1.5);
-  --spacing-2: calc(.25rem * 2);
-  --spacing-3: calc(.25rem * 3);
-  --spacing-4: calc(.25rem * 4);
-  --spacing-5: calc(.25rem * 5);
-  --spacing-6: calc(.25rem * 6);
-  --spacing-7: calc(.25rem * 7);
-  --spacing-8: calc(.25rem * 8);
-  --spacing-9: calc(.25rem * 9);
-  --spacing-10: calc(.25rem * 10);
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-card: 12px;
-  --radius-lg: 16px;
-  --radius-pill: 8px;
-  --shadow-sm: 0 1px 2px rgba(53, 47, 61, .06);
-  --shadow-md: 0 4px 12px rgba(53, 47, 61, .1);
-  --color-success-bg-solid: #d9ffd6;
-  --color-error-bg-solid: #ffe0e0;
-  --color-error-border-solid: #ffe0e0;
-  --color-warning-bg-solid: #fffbbd;
-  --color-warning-text: #573a00;
-  --color-info-bg-solid: #d1f1ff;
-  --color-info-bg-solid-alt: #d1f1ff;
-  --color-info-text: #002a66;
-  --color-info-text-alt: #002a66;
-  --color-emerald: #367c53;
-  --color-teal: #0c9aa7;
-  --color-code-bg: #eae8ed;
-  --color-code-header-bg: #dcdadf;
-  --color-code-text: #352f3d;
-  --color-code-border: #c1bec6;
-  --color-code-muted: #5e5966;
-  --color-inline-code-bg: #eae8ed;
-  --color-inline-code-text: #352f3d;
-  --color-inline-code-border: #c1bec6;
-  --color-scrollbar-thumb: #c1bec6;
-  --color-scrollbar-track: transparent;
-  --color-graph-node-text: #352f3d;
-  --color-graph-node-text-dim: #938f9b;
-  --color-graph-edge-default: #938f9b;
-  --color-graph-edge-cross: #d08025;
-  --color-graph-edge-text: #5e5966;
-  --color-graph-edge-stroke: #f2f1f4;
-  --color-graph-highlight-bg: #FF6B6B;
-  --color-graph-highlight-border: #E74C3C;
-  --color-graph-search-bg: #FFD700;
-  --color-graph-search-border: #FFA500;
-  --color-graph-focus-border: #C0392B;
-  --color-graph-external-border: #938f9b;
-  --color-graph-cat-file: #3878b0;
-  --color-graph-cat-folder: #5e5966;
-  --color-graph-cat-file-aggregate: #2d6a9f;
-  --color-graph-cat-class: #7138cc;
-  --color-graph-cat-function: #367c53;
-  --color-graph-cat-method: #0c9aa7;
-  --color-graph-cat-variable: #d08025;
-  --color-graph-cat-import: #b06a1a;
-  --color-graph-cat-module: #5e35a8;
-  --color-graph-cat-concept: #993333;
-  --color-graph-cat-person: #c44d4d;
-  --color-graph-cat-org: #0c9aa7;
-  --color-graph-cat-organization: #0c9aa7;
-  --color-graph-cat-product: #8e47ff;
-  --color-graph-cat-metric: #c44d78;
-  --color-graph-cat-location: #34495E;
-  --color-graph-cat-date: #b34d8a;
-  --color-graph-cat-code: #3878b0;
-  --color-graph-cat-doc: #5e5966;
-  --color-graph-cat-url: #367c53;
-  --color-graph-cat-email: #5e35a8;
-  --color-graph-cat-unknown: #938f9b;
-  --color-graph-rel-contains: #938f9b;
-  --color-graph-rel-extends: #7138cc;
-  --color-graph-rel-implements: #3878b0;
-  --color-graph-rel-imports: #d08025;
-  --color-graph-rel-uses: #367c53;
-  --color-graph-rel-calls: #367c53;
-  --color-graph-rel-references: #d08025;
-  --color-graph-rel-related-to: #938f9b;
-  --color-graph-rel-works-on: #993333;
-  --color-graph-rel-owns: #0c9aa7;
-  --color-graph-rel-depends-on: #b06a1a;
-  --color-graph-rel-parent-of: #938f9b;
-  --qs-content: #fff;
-  --qs-main: #fff;
-  --qs-primary-foreground: #131920;
-  --qs-secondary-foreground: #656871;
-  --qs-tertiary-foreground: #938f9b;
-  --qs-placeholder-foreground: #8c8c94;
-  --qs-divider: #dedee3;
-  --qs-default-border: #8c8c94;
-  --qs-neutral-soft: #b4b4bb;
-  --qs-neutral-gray-50: #eae8ed;
-  --qs-tertiary-background: #eae8ed;
-  --qs-action-hover: #f3f3f7;
-  --qs-primary-default: #4200db;
-  --qs-primary-dark: #35009e;
-  --qs-primary-light: #e8e6ff;
-  --qs-success-default: #00802f;
-  --qs-error-default: #db0000;
-  --qs-font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
-  --qs-font-family: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
-  --qs-font-base-letter-spacing: .15px;
-  --qs-shadow-sm: 0 0 2px 0 #00000029, 0 0 4px 0 #00000029;
-  --qs-shadow-md: 0 0 2px 0 #00000029, 0 2px 8px 1px #00000029;
-  --qs-shadow-lg: 0 4px 16px 4px #00000029, 0 2px 6px 1px #00000029;
-  --qs-shadow-xl: 0 4px 8px 2px #00000029, 0 6px 20px 4px #00000029;
-  --qs-width-modal-sm: 384px;
-  --qs-width-modal-md: 600px;
-  --qs-width-modal-lg: 1136px;
-  --qs-grid-gap: 16px;
-  --qs-grid-gap-xl: 24px;
-  --qs-primary-medium: #8575ff;
-  --qs-primary-inverse: #fff;
-  --qs-neutral-lightest: #f9f9fb;
-  --qs-neutral-light: #f3f3f7;
-  --qs-neutral-default: #dedee3;
-  --qs-neutral-medium: #8c8c94;
-  --qs-neutral-deep: #656871;
-  --qs-neutral-dark: #333843;
-  --qs-neutral-strong: #131920;
-  --qs-neutral-white: #fff;
-  --qs-neutral-black: #000;
-  --qs-success-medium: #005c26;
-  --qs-success-dark: #00471e;
-  --qs-success-light: #d9ffd6;
-  --qs-success-inverse: #fff;
-  --qs-info-default: #006ce0;
-  --qs-info-medium: #003b8f;
-  --qs-info-dark: #002a66;
-  --qs-info-light: #d1f1ff;
-  --qs-info-inverse: #fff;
-  --qs-warning-default: #f2b100;
-  --qs-warning-medium: #db9200;
-  --qs-warning-dark: #573a00;
-  --qs-warning-light: #fffbbd;
-  --qs-warning-inverse: #573a00;
-  --qs-warning-experimental: #f2b100;
-  --qs-warning-experimental-light: #fffbbd;
-  --qs-warning-experimental-light-foreground: #fffbbd;
-  --qs-error-medium: #900;
-  --qs-error-dark: #700000;
-  --qs-error-light: #ffe0e0;
-  --qs-error-inverse: #fff;
-  --qs-connection-default: #db3300;
-  --qs-connection-soft: #ff997a;
-  --qs-connection-light: #ffe0d6;
-  --qs-connection-dark: #661800;
-  --qs-automation-default: #b3008f;
-  --qs-automation-medium: #d600ba;
-  --qs-automation-soft: #ff94f1;
-  --qs-automation-light: #ffe0fb;
-  --qs-automation-dark: #660052;
-  --qs-insight-default: #a000b8;
-  --qs-insight-soft: #f299ff;
-  --qs-insight-light: #fce6ff;
-  --qs-insight-dark: #590066;
-  --qs-visualization-default: #7300e5;
-  --qs-visualization-soft: #d4a8ff;
-  --qs-visualization-light: #f2e5ff;
-  --qs-visualization-dark: #45008a;
-  --qs-spice: #ff9800;
-  --qs-coachmark: #006ce0;
-  --qs-brand: #fff;
-  --qs-brand-foreground: #131920;
-  --qs-brand-navbar: #131920;
-  --qs-brand-navbar-foreground: #fff;
-  --qs-brand-navbar-light: #dedee3;
-  --qs-brand-navbar-dark: #000;
-  --qs-application-navbar: #4200db;
-  --qs-application-navbar-foreground: #fff;
-  --qs-application-navbar-light: #e8e6ff;
-  --qs-application-navbar-dark: #35009e;
-  --qs-dimension: #4200db;
-  --qs-dimension-foreground: #fff;
-  --qs-dimension-experimental: #4200db;
-  --qs-dimension-experimental-foreground: #4200db;
-  --qs-measure: #00802f;
-  --qs-measure-foreground: #fff;
-  --qs-measure-experimental: #f2b100;
-  --qs-measure-experimental-foreground: #f2b100;
-  --qs-content-inverse: #333843;
-  --qs-content-inverse-active: #131920;
-  --qs-secondary: #dedee3;
-  --qs-disabled: #8c8c94;
-  --qs-divider-light: #f3f3f7;
-  --qs-hover-border: #333843;
-  --qs-active-border: #4200db;
-  --qs-disabled-border: #dedee3;
-  --qs-error-border: #ffe0e0;
-  --qs-error-active-border: #db0000;
-  --qs-disabled-foreground: #b4b4bb;
-  --qs-primary-inverse-foreground: #fff;
-  --qs-error-foreground: #db0000;
-  --qs-contrast-foreground: #131920;
-  --qs-main-foreground: #131920;
-  --qs-main-secondary-foreground: #656871;
-  --qs-action-disabled: #f3f3f7;
-  --qs-action-active: #e8e6ff;
-  --qs-default-badge: #dedee3;
-  --qs-tag-default: #dedee3;
-  --qs-tag-soft-border: #b4b4bb;
-  --qs-focus-offset: 1px;
-  --qs-toggle-tile-sm: calc(.25rem * 8);
-  --qs-toggle-tile-md: calc(.25rem * 12);
-  --qs-toggle-tile-lg: calc(.25rem * 15);
-  --qs-shadow-pin-right: inset 4px 0 4px -4px #00000029;
-  --qs-shadow-pin-left: inset -4px 0 4px -4px #00000029;
-  --react-pdf-text-layer: 1;
-  --highlight-bg-color: rgba(180, 0, 170, 1);
-  --highlight-selected-bg-color: rgba(0, 100, 0, 1);
-  --react-pdf-annotation-layer: 1;
-  --annotation-unfocused-field-background: url("data:image/svg+xml;charset=UTF-8,<svg width='1px' height='1px' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' style='fill:rgba(0, 54, 255, 0.13);'/></svg>");
-  --input-focus-border-color: Highlight;
-  --input-focus-outline: 1px solid Canvas;
-  --input-unfocused-border-color: transparent;
-  --input-disabled-border-color: transparent;
-  --input-hover-border-color: black;
-  --link-outline: none;
-  color-scheme: light;
-}
-body { background: var(--color-bg); color: var(--color-text); }
-a { color: var(--color-link, var(--color-primary)); }</style>
+<html lang="ja">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>EITS Warikan</title>
@@ -533,32 +194,32 @@ select.input option{background:rgba(255,255,255,0.95);color:var(--text);}
   <div class="vault-illustration">
     <svg viewBox="0 0 400 440" class="vault-svg">
       <!-- Vault body (larger) -->
-      <rect x="30" y="20" width="340" height="400" rx="16" fill="#2d3436" stroke="#636e72" stroke-width="5"></rect>
+      <rect x="30" y="20" width="340" height="400" rx="16" fill="#2d3436" stroke="#636e72" stroke-width="5"/>
       <!-- Vault door frame -->
-      <rect x="50" y="40" width="300" height="360" rx="10" fill="#4a5568" stroke="#718096" stroke-width="2.5"></rect>
+      <rect x="50" y="40" width="300" height="360" rx="10" fill="#4a5568" stroke="#718096" stroke-width="2.5"/>
       <!-- Vault door -->
-      <rect x="62" y="52" width="276" height="336" rx="8" fill="#1a202c" stroke="#4a5568" stroke-width="3" class="vault-door-rect"></rect>
+      <rect x="62" y="52" width="276" height="336" rx="8" fill="#1a202c" stroke="#4a5568" stroke-width="3" class="vault-door-rect"/>
       <!-- Hinges left -->
-      <rect x="44" y="90" width="18" height="36" rx="4" fill="#636e72"></rect>
-      <rect x="44" y="300" width="18" height="36" rx="4" fill="#636e72"></rect>
+      <rect x="44" y="90" width="18" height="36" rx="4" fill="#636e72"/>
+      <rect x="44" y="300" width="18" height="36" rx="4" fill="#636e72"/>
       <!-- Dial ring -->
-      <circle cx="200" cy="170" r="62" fill="none" stroke="#718096" stroke-width="7" class="vault-dial-ring"></circle>
+      <circle cx="200" cy="170" r="62" fill="none" stroke="#718096" stroke-width="7" class="vault-dial-ring"/>
       <!-- Dial ticks -->
       <g stroke="#a0aec0" stroke-width="2" class="vault-ticks">
-        <line x1="200" y1="113" x2="200" y2="125"></line><line x1="200" y1="215" x2="200" y2="227"></line>
-        <line x1="143" y1="170" x2="155" y2="170"></line><line x1="245" y1="170" x2="257" y2="170"></line>
-        <line x1="156" y1="126" x2="163" y2="135"></line><line x1="237" y1="135" x2="244" y2="126"></line>
-        <line x1="156" y1="214" x2="163" y2="205"></line><line x1="237" y1="205" x2="244" y2="214"></line>
+        <line x1="200" y1="113" x2="200" y2="125"/><line x1="200" y1="215" x2="200" y2="227"/>
+        <line x1="143" y1="170" x2="155" y2="170"/><line x1="245" y1="170" x2="257" y2="170"/>
+        <line x1="156" y1="126" x2="163" y2="135"/><line x1="237" y1="135" x2="244" y2="126"/>
+        <line x1="156" y1="214" x2="163" y2="205"/><line x1="237" y1="205" x2="244" y2="214"/>
       </g>
       <!-- Dial face -->
-      <circle cx="200" cy="170" r="40" fill="#2d3436" stroke="#4a5568" stroke-width="3"></circle>
+      <circle cx="200" cy="170" r="40" fill="#2d3436" stroke="#4a5568" stroke-width="3"/>
       <!-- Dial pointer -->
-      <line x1="200" y1="170" x2="200" y2="135" stroke="#e53e3e" stroke-width="3.5" stroke-linecap="round" class="vault-pointer"></line>
+      <line x1="200" y1="170" x2="200" y2="135" stroke="#e53e3e" stroke-width="3.5" stroke-linecap="round" class="vault-pointer"/>
       <!-- Dial center dot -->
-      <circle cx="200" cy="170" r="5" fill="#e53e3e"></circle>
+      <circle cx="200" cy="170" r="5" fill="#e53e3e"/>
       <!-- Bolts -->
-      <circle cx="95" cy="80" r="6" fill="#4a5568"></circle><circle cx="305" cy="80" r="6" fill="#4a5568"></circle>
-      <circle cx="95" cy="360" r="6" fill="#4a5568"></circle><circle cx="305" cy="360" r="6" fill="#4a5568"></circle>
+      <circle cx="95" cy="80" r="6" fill="#4a5568"/><circle cx="305" cy="80" r="6" fill="#4a5568"/>
+      <circle cx="95" cy="360" r="6" fill="#4a5568"/><circle cx="305" cy="360" r="6" fill="#4a5568"/>
     </svg>
     
     <!-- Password input (positioned over the red bar area below dial) -->
@@ -569,8 +230,8 @@ select.input option{background:rgba(255,255,255,0.95);color:var(--text);}
     <!-- Handle = UNLOCK button -->
     <button class="vault-lever" id="pwBtn" onclick="checkPw()">
       <svg viewBox="0 0 120 40" class="lever-svg">
-        <rect x="0" y="10" width="90" height="20" rx="10" fill="#718096"></rect>
-        <circle cx="100" cy="20" r="18" fill="#636e72" stroke="#4a5568" stroke-width="3"></circle>
+        <rect x="0" y="10" width="90" height="20" rx="10" fill="#718096"/>
+        <circle cx="100" cy="20" r="18" fill="#636e72" stroke="#4a5568" stroke-width="3"/>
         <text x="100" y="24" text-anchor="middle" font-size="9" fill="#e2e8f0" font-weight="600">GO</text>
       </svg>
     </button>
@@ -605,13 +266,13 @@ select.input option{background:rgba(255,255,255,0.95);color:var(--text);}
 <!-- BG ART -->
 <div class="bg-art">
   <svg viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
-    <path d="M0 200 Q250 100 500 200 T1000 200" stroke="#4285F4" fill="none" stroke-width="1.5"></path>
-    <path d="M0 400 Q300 300 600 400 T1000 400" stroke="#EA4335" fill="none" stroke-width="1"></path>
-    <path d="M0 600 Q350 700 700 600 T1000 600" stroke="#FBBC05" fill="none" stroke-width="1"></path>
-    <path d="M0 800 Q200 700 500 800 T1000 800" stroke="#34A853" fill="none" stroke-width="0.8"></path>
-    <circle cx="150" cy="350" r="60" stroke="#34A853" fill="none" stroke-width="0.8"></circle>
-    <circle cx="800" cy="250" r="90" stroke="#4285F4" fill="none" stroke-width="0.6"></circle>
-    <circle cx="600" cy="750" r="40" stroke="#EA4335" fill="none" stroke-width="0.6"></circle>
+    <path d="M0 200 Q250 100 500 200 T1000 200" stroke="#4285F4" fill="none" stroke-width="1.5"/>
+    <path d="M0 400 Q300 300 600 400 T1000 400" stroke="#EA4335" fill="none" stroke-width="1"/>
+    <path d="M0 600 Q350 700 700 600 T1000 600" stroke="#FBBC05" fill="none" stroke-width="1"/>
+    <path d="M0 800 Q200 700 500 800 T1000 800" stroke="#34A853" fill="none" stroke-width="0.8"/>
+    <circle cx="150" cy="350" r="60" stroke="#34A853" fill="none" stroke-width="0.8"/>
+    <circle cx="800" cy="250" r="90" stroke="#4285F4" fill="none" stroke-width="0.6"/>
+    <circle cx="600" cy="750" r="40" stroke="#EA4335" fill="none" stroke-width="0.6"/>
   </svg>
 </div>
 
@@ -773,8 +434,7 @@ select.input option{background:rgba(255,255,255,0.95);color:var(--text);}
   <div class="modal">
     <h3>メンバー一括入力</h3>
     <p style="font-size:0.72rem;color:var(--text-secondary);margin-bottom:12px;">1行1名: 名前(tab/comma)役職</p>
-    <textarea class="textarea" id="bulkText" placeholder="田中太郎,L5
-山田花子,TL"></textarea>
+    <textarea class="textarea" id="bulkText" placeholder="田中太郎,L5&#10;山田花子,TL"></textarea>
     <div class="btn-group" style="margin-top:16px;justify-content:flex-end;">
       <button class="btn btn-outline" onclick="closeBulkModal()">キャンセル</button>
       <button class="btn btn-filled" onclick="applyBulk()">追加</button>
@@ -1045,10 +705,11 @@ function calculate(){
   const ratios={};
   document.querySelectorAll('.ratio-input').forEach(el=>{ratios[el.dataset.role]=parseFloat(el.value)||1;});
   
-  // Gift: split equally among soubet-checked members (separate from party)
+  // Gift: weighted split among soubet-checked members
   const giftTotal=gifts.reduce((s,g)=>s+g.amount,0);
   const soubetMembers=members.filter(m=>m.soubet);
-  const giftPer=soubetMembers.length?giftTotal/soubetMembers.length:0;
+  const soubetWeight=soubetMembers.reduce((s,m)=>s+(ratios[m.role]||1),0);
+  const giftBase=soubetWeight?giftTotal/soubetWeight:0;
   
   // Party: weighted split among 1次-checked members
   const ichiMembers=members.filter(m=>m.ichi);
@@ -1057,7 +718,7 @@ function calculate(){
 
   results=members.map(m=>{
     let giftAmt=0, partyAmt=0;
-    if(m.soubet) giftAmt=Math.ceil(giftPer/100)*100;
+    if(m.soubet) giftAmt=Math.ceil((giftBase*(ratios[m.role]||1))/100)*100;
     if(m.ichi) partyAmt=Math.ceil((ichiBase*(ratios[m.role]||1))/100)*100;
     return{name:m.name,role:m.role,amount:giftAmt+partyAmt,gift:giftAmt,party:partyAmt};
   });
@@ -1242,7 +903,5 @@ function updateYenDisplay(progress){
 }
 
 </script>
-
-
-</body></html>
-<!-- redeploy -->
+</body>
+</html>
