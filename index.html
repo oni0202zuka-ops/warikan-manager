@@ -1057,8 +1057,8 @@ function calculate(){
 
   results=members.map(m=>{
     let giftAmt=0, partyAmt=0;
-    if(m.soubet) giftAmt=Math.round(giftPer/100)*100;
-    if(m.ichi) partyAmt=Math.round((ichiBase*(ratios[m.role]||1))/100)*100;
+    if(m.soubet) giftAmt=Math.ceil(giftPer/100)*100;
+    if(m.ichi) partyAmt=Math.ceil((ichiBase*(ratios[m.role]||1))/100)*100;
     return{name:m.name,role:m.role,amount:giftAmt+partyAmt,gift:giftAmt,party:partyAmt};
   });
   
