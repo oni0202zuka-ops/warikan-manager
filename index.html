@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ja"><head><style id="qw-theme">:root {
+  --color-bg: #f2f1f4;
+  --color-text: #352f3d;
+  --color-navbar-bg: #eae8ed;
+  --color-bg-chat-view: #fcfcfd;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #eae8ed;
+  --color-bg-hover: #dcdadf;
+  --color-surface: #eae8ed;
+  --color-surface-hover: #dcdadf;
+  --color-surface-active: #c1bec6;
+  --color-border: #c1bec6;
+  --color-border-light: #dcdadf;
+  --color-border-strong: #c1bec6;
+  --color-primary: #4200db;
+  --color-primary-dark: #35009e;
+  --color-primary-light: #8575ff;
+  --color-primary-bg: #e8e6ff;
+  --color-primary-hover-border: #35009e;
+  --color-nav-icon-active: #4200db;
+  --color-nav-hover-border: #4200db;
+  --color-primary-alpha-3: color-mix(in srgb, #4200db 3%, transparent);
+  --color-primary-alpha-5: color-mix(in srgb, #4200db 5%, transparent);
+  --color-primary-alpha-8: color-mix(in srgb, #4200db 8%, transparent);
+  --color-primary-alpha-12: color-mix(in srgb, #4200db 12%, transparent);
+  --color-primary-alpha-15: color-mix(in srgb, #4200db 15%, transparent);
+  --color-primary-alpha-20: color-mix(in srgb, #4200db 20%, transparent);
+  --color-primary-alpha-25: color-mix(in srgb, #4200db 25%, transparent);
+  --color-primary-alpha-30: color-mix(in srgb, #4200db 30%, transparent);
+  --color-primary-alpha-40: color-mix(in srgb, #4200db 40%, transparent);
+  --color-primary-alpha-50: color-mix(in srgb, #4200db 50%, transparent);
+  --color-primary-alpha-60: color-mix(in srgb, #4200db 60%, transparent);
+  --color-primary-subtle: color-mix(in srgb, #4200db 18%, transparent);
+  --color-primary-border: #8575ff;
+  --color-focus-ring: color-mix(in srgb, #4200db 50%, transparent);
+  --color-sidebar-hover: color-mix(in srgb, #4200db 12%, transparent);
+  --color-accent: #4200db;
+  --color-accent-foreground: #4200db;
+  --color-accent-dark: #35009e;
+  --color-accent-light: #e8e6ff;
+  --color-accent-inverse: #ffffff;
+  --color-link: #4200db;
+  --color-primary-gradient-end: #e8e6ff;
+  --color-primary-bg-solid: #eae8ed;
+  --color-user-bubble: #F3F3F7;
+  --color-user-bubble-text: #352f3d;
+  --color-text-secondary: #5e5966;
+  --color-text-tertiary: #7a7582;
+  --color-text-muted: #938f9b;
+  --color-text-on-primary: #f2f1f4;
+  --color-success: #00802f;
+  --color-success-dark: #00471e;
+  --color-success-light: #d9ffd6;
+  --color-success-hover: #005c26;
+  --color-success-bg: #e6f4eb;
+  --color-success-border: #c4dccb;
+  --color-success-foreground: #00802f;
+  --color-success-dark-foreground: #00471e;
+  --color-success-text: #00471e;
+  --color-error: #db0000;
+  --color-error-dark: #700000;
+  --color-error-light: #ffe0e0;
+  --color-error-hover: #ffe0e0;
+  --color-error-bg: #fbe9ea;
+  --color-error-border: #eecbcd;
+  --color-error-active-border: #db0000;
+  --color-error-foreground: #db0000;
+  --color-error-dark-foreground: #700000;
+  --color-error-inverse: #ffffff;
+  --color-error-text: #700000;
+  --color-warning: #f2b100;
+  --color-warning-dark: #573a00;
+  --color-warning-light: #fffbbd;
+  --color-warning-hover: #db9200;
+  --color-warning-bg: #fdf6e4;
+  --color-warning-border: #f5dda6;
+  --color-warning-foreground: #f2b100;
+  --color-warning-dark-foreground: #573a00;
+  --color-warning-inverse: #573a00;
+  --color-surface-warning: #fffbbd;
+  --color-text-warning: #573a00;
+  --color-info: #006ce0;
+  --color-info-dark: #002a66;
+  --color-info-light: #d1f1ff;
+  --color-info-hover: #003b8f;
+  --color-info-bg: #e6f0fb;
+  --color-info-border: #c0d5ec;
+  --color-info-foreground: #006ce0;
+  --color-info-dark-foreground: #002a66;
+  --color-info-inverse: #ffffff;
+  --color-overlay: #dcdadf80;
+  --color-shadow: #352f3d40;
+  --color-hover: #352f3d0d;
+  --color-tooltip-bg: #eae8ed;
+  --color-tooltip-text: #352f3d;
+  --color-voice-purple: #8575ff;
+  --color-voice-purple-dark: #4200db;
+  --color-voice-purple-light: #8575ff;
+  --color-voice-red: #db0000;
+  --color-voice-red-dark: #700000;
+  --color-voice-amber: #f2b100;
+  --color-voice-purple-glow: rgba(66, 0, 219, .4);
+  --color-voice-red-glow: rgba(219, 0, 0, .4);
+  --font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", "Monaco", "Menlo", "Consolas", monospace;
+  --text-2xs: .5625rem;
+  --text-xs: .625rem;
+  --text-sm: .6875rem;
+  --text-base: .75rem;
+  --text-md: .8125rem;
+  --text-lg: .875rem;
+  --text-xl: 1rem;
+  --text-2xl: 1.125rem;
+  --text-3xl: 1.25rem;
+  --text-4xl: 1.5rem;
+  --text-5xl: 2rem;
+  --spacing-1: calc(.25rem * 1);
+  --spacing-1-5: calc(.25rem * 1.5);
+  --spacing-2: calc(.25rem * 2);
+  --spacing-3: calc(.25rem * 3);
+  --spacing-4: calc(.25rem * 4);
+  --spacing-5: calc(.25rem * 5);
+  --spacing-6: calc(.25rem * 6);
+  --spacing-7: calc(.25rem * 7);
+  --spacing-8: calc(.25rem * 8);
+  --spacing-9: calc(.25rem * 9);
+  --spacing-10: calc(.25rem * 10);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-card: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 8px;
+  --shadow-sm: 0 1px 2px rgba(53, 47, 61, .06);
+  --shadow-md: 0 4px 12px rgba(53, 47, 61, .1);
+  --color-success-bg-solid: #d9ffd6;
+  --color-error-bg-solid: #ffe0e0;
+  --color-error-border-solid: #ffe0e0;
+  --color-warning-bg-solid: #fffbbd;
+  --color-warning-text: #573a00;
+  --color-info-bg-solid: #d1f1ff;
+  --color-info-bg-solid-alt: #d1f1ff;
+  --color-info-text: #002a66;
+  --color-info-text-alt: #002a66;
+  --color-emerald: #367c53;
+  --color-teal: #0c9aa7;
+  --color-code-bg: #eae8ed;
+  --color-code-header-bg: #dcdadf;
+  --color-code-text: #352f3d;
+  --color-code-border: #c1bec6;
+  --color-code-muted: #5e5966;
+  --color-inline-code-bg: #eae8ed;
+  --color-inline-code-text: #352f3d;
+  --color-inline-code-border: #c1bec6;
+  --color-scrollbar-thumb: #c1bec6;
+  --color-scrollbar-track: transparent;
+  --color-graph-node-text: #352f3d;
+  --color-graph-node-text-dim: #938f9b;
+  --color-graph-edge-default: #938f9b;
+  --color-graph-edge-cross: #d08025;
+  --color-graph-edge-text: #5e5966;
+  --color-graph-edge-stroke: #f2f1f4;
+  --color-graph-highlight-bg: #FF6B6B;
+  --color-graph-highlight-border: #E74C3C;
+  --color-graph-search-bg: #FFD700;
+  --color-graph-search-border: #FFA500;
+  --color-graph-focus-border: #C0392B;
+  --color-graph-external-border: #938f9b;
+  --color-graph-cat-file: #3878b0;
+  --color-graph-cat-folder: #5e5966;
+  --color-graph-cat-file-aggregate: #2d6a9f;
+  --color-graph-cat-class: #7138cc;
+  --color-graph-cat-function: #367c53;
+  --color-graph-cat-method: #0c9aa7;
+  --color-graph-cat-variable: #d08025;
+  --color-graph-cat-import: #b06a1a;
+  --color-graph-cat-module: #5e35a8;
+  --color-graph-cat-concept: #993333;
+  --color-graph-cat-person: #c44d4d;
+  --color-graph-cat-org: #0c9aa7;
+  --color-graph-cat-organization: #0c9aa7;
+  --color-graph-cat-product: #8e47ff;
+  --color-graph-cat-metric: #c44d78;
+  --color-graph-cat-location: #34495E;
+  --color-graph-cat-date: #b34d8a;
+  --color-graph-cat-code: #3878b0;
+  --color-graph-cat-doc: #5e5966;
+  --color-graph-cat-url: #367c53;
+  --color-graph-cat-email: #5e35a8;
+  --color-graph-cat-unknown: #938f9b;
+  --color-graph-rel-contains: #938f9b;
+  --color-graph-rel-extends: #7138cc;
+  --color-graph-rel-implements: #3878b0;
+  --color-graph-rel-imports: #d08025;
+  --color-graph-rel-uses: #367c53;
+  --color-graph-rel-calls: #367c53;
+  --color-graph-rel-references: #d08025;
+  --color-graph-rel-related-to: #938f9b;
+  --color-graph-rel-works-on: #993333;
+  --color-graph-rel-owns: #0c9aa7;
+  --color-graph-rel-depends-on: #b06a1a;
+  --color-graph-rel-parent-of: #938f9b;
+  --qs-content: #fff;
+  --qs-main: #fff;
+  --qs-primary-foreground: #131920;
+  --qs-secondary-foreground: #656871;
+  --qs-tertiary-foreground: #938f9b;
+  --qs-placeholder-foreground: #8c8c94;
+  --qs-divider: #dedee3;
+  --qs-default-border: #8c8c94;
+  --qs-neutral-soft: #b4b4bb;
+  --qs-neutral-gray-50: #eae8ed;
+  --qs-tertiary-background: #eae8ed;
+  --qs-action-hover: #f3f3f7;
+  --qs-primary-default: #4200db;
+  --qs-primary-dark: #35009e;
+  --qs-primary-light: #e8e6ff;
+  --qs-success-default: #00802f;
+  --qs-error-default: #db0000;
+  --qs-font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+  --qs-font-family: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+  --qs-font-base-letter-spacing: .15px;
+  --qs-shadow-sm: 0 0 2px 0 #00000029, 0 0 4px 0 #00000029;
+  --qs-shadow-md: 0 0 2px 0 #00000029, 0 2px 8px 1px #00000029;
+  --qs-shadow-lg: 0 4px 16px 4px #00000029, 0 2px 6px 1px #00000029;
+  --qs-shadow-xl: 0 4px 8px 2px #00000029, 0 6px 20px 4px #00000029;
+  --qs-width-modal-sm: 384px;
+  --qs-width-modal-md: 600px;
+  --qs-width-modal-lg: 1136px;
+  --qs-grid-gap: 16px;
+  --qs-grid-gap-xl: 24px;
+  --qs-primary-medium: #8575ff;
+  --qs-primary-inverse: #fff;
+  --qs-neutral-lightest: #f9f9fb;
+  --qs-neutral-light: #f3f3f7;
+  --qs-neutral-default: #dedee3;
+  --qs-neutral-medium: #8c8c94;
+  --qs-neutral-deep: #656871;
+  --qs-neutral-dark: #333843;
+  --qs-neutral-strong: #131920;
+  --qs-neutral-white: #fff;
+  --qs-neutral-black: #000;
+  --qs-success-medium: #005c26;
+  --qs-success-dark: #00471e;
+  --qs-success-light: #d9ffd6;
+  --qs-success-inverse: #fff;
+  --qs-info-default: #006ce0;
+  --qs-info-medium: #003b8f;
+  --qs-info-dark: #002a66;
+  --qs-info-light: #d1f1ff;
+  --qs-info-inverse: #fff;
+  --qs-warning-default: #f2b100;
+  --qs-warning-medium: #db9200;
+  --qs-warning-dark: #573a00;
+  --qs-warning-light: #fffbbd;
+  --qs-warning-inverse: #573a00;
+  --qs-warning-experimental: #f2b100;
+  --qs-warning-experimental-light: #fffbbd;
+  --qs-warning-experimental-light-foreground: #fffbbd;
+  --qs-error-medium: #900;
+  --qs-error-dark: #700000;
+  --qs-error-light: #ffe0e0;
+  --qs-error-inverse: #fff;
+  --qs-connection-default: #db3300;
+  --qs-connection-soft: #ff997a;
+  --qs-connection-light: #ffe0d6;
+  --qs-connection-dark: #661800;
+  --qs-automation-default: #b3008f;
+  --qs-automation-medium: #d600ba;
+  --qs-automation-soft: #ff94f1;
+  --qs-automation-light: #ffe0fb;
+  --qs-automation-dark: #660052;
+  --qs-insight-default: #a000b8;
+  --qs-insight-soft: #f299ff;
+  --qs-insight-light: #fce6ff;
+  --qs-insight-dark: #590066;
+  --qs-visualization-default: #7300e5;
+  --qs-visualization-soft: #d4a8ff;
+  --qs-visualization-light: #f2e5ff;
+  --qs-visualization-dark: #45008a;
+  --qs-spice: #ff9800;
+  --qs-coachmark: #006ce0;
+  --qs-brand: #fff;
+  --qs-brand-foreground: #131920;
+  --qs-brand-navbar: #131920;
+  --qs-brand-navbar-foreground: #fff;
+  --qs-brand-navbar-light: #dedee3;
+  --qs-brand-navbar-dark: #000;
+  --qs-application-navbar: #4200db;
+  --qs-application-navbar-foreground: #fff;
+  --qs-application-navbar-light: #e8e6ff;
+  --qs-application-navbar-dark: #35009e;
+  --qs-dimension: #4200db;
+  --qs-dimension-foreground: #fff;
+  --qs-dimension-experimental: #4200db;
+  --qs-dimension-experimental-foreground: #4200db;
+  --qs-measure: #00802f;
+  --qs-measure-foreground: #fff;
+  --qs-measure-experimental: #f2b100;
+  --qs-measure-experimental-foreground: #f2b100;
+  --qs-content-inverse: #333843;
+  --qs-content-inverse-active: #131920;
+  --qs-secondary: #dedee3;
+  --qs-disabled: #8c8c94;
+  --qs-divider-light: #f3f3f7;
+  --qs-hover-border: #333843;
+  --qs-active-border: #4200db;
+  --qs-disabled-border: #dedee3;
+  --qs-error-border: #ffe0e0;
+  --qs-error-active-border: #db0000;
+  --qs-disabled-foreground: #b4b4bb;
+  --qs-primary-inverse-foreground: #fff;
+  --qs-error-foreground: #db0000;
+  --qs-contrast-foreground: #131920;
+  --qs-main-foreground: #131920;
+  --qs-main-secondary-foreground: #656871;
+  --qs-action-disabled: #f3f3f7;
+  --qs-action-active: #e8e6ff;
+  --qs-default-badge: #dedee3;
+  --qs-tag-default: #dedee3;
+  --qs-tag-soft-border: #b4b4bb;
+  --qs-focus-offset: 1px;
+  --qs-toggle-tile-sm: calc(.25rem * 8);
+  --qs-toggle-tile-md: calc(.25rem * 12);
+  --qs-toggle-tile-lg: calc(.25rem * 15);
+  --qs-shadow-pin-right: inset 4px 0 4px -4px #00000029;
+  --qs-shadow-pin-left: inset -4px 0 4px -4px #00000029;
+  --react-pdf-text-layer: 1;
+  --highlight-bg-color: rgba(180, 0, 170, 1);
+  --highlight-selected-bg-color: rgba(0, 100, 0, 1);
+  --react-pdf-annotation-layer: 1;
+  --annotation-unfocused-field-background: url("data:image/svg+xml;charset=UTF-8,<svg width='1px' height='1px' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' style='fill:rgba(0, 54, 255, 0.13);'/></svg>");
+  --input-focus-border-color: Highlight;
+  --input-focus-outline: 1px solid Canvas;
+  --input-unfocused-border-color: transparent;
+  --input-disabled-border-color: transparent;
+  --input-hover-border-color: black;
+  --link-outline: none;
+  color-scheme: light;
+}
+body { background: var(--color-bg); color: var(--color-text); }
+a { color: var(--color-link, var(--color-primary)); }</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EITS Warikan</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --blue:#1a73e8;--blue-light:#e8f0fe;--blue-dark:#1557b0;
+  --green:#34a853;--green-light:#e6f4ea;
+  --red:#ea4335;--yellow:#fbbc05;
+  --bg:#0f0f14;--surface:rgba(255,255,255,0.03);
+  --card-bg:rgba(255,255,255,0.06);
+  --text:#e8eaed;--text-secondary:#9aa0a6;--text-tertiary:#5f6368;
+  --border:rgba(255,255,255,0.08);--border-light:rgba(255,255,255,0.05);
+  --glass:rgba(255,255,255,0.04);
+  --shadow:0 8px 32px rgba(0,0,0,0.3);
+  --radius:24px;--radius-sm:12px;
+  --sidebar-w:200px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Google Sans',Roboto,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+button{cursor:pointer;font-family:inherit;border:none;outline:none;}
+input,textarea,select{font-family:inherit;outline:none;}
+
+/* ===== LOCK SCREEN ===== */
+#lockScreen{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#0a0a0f;}
+#lockScreen .bg-lines{position:absolute;inset:0;overflow:hidden;}
+#lockScreen .bg-lines svg{width:100%;height:100%;opacity:0.12;}
+.lock-box{position:relative;width:340px;padding:48px 36px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:24px;backdrop-filter:blur(40px);text-align:center;}
+.lock-box h2{color:#fff;font-size:1.1rem;font-weight:400;margin-bottom:24px;letter-spacing:0.5px;}
+.lock-input{width:100%;padding:14px 18px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:100px;color:#fff;font-size:0.95rem;transition:border 0.2s;}
+.lock-input:focus{border-color:var(--blue);}
+.lock-input::placeholder{color:rgba(255,255,255,0.25);}
+.lock-btn{width:100%;margin-top:16px;padding:14px;background:var(--blue);color:#fff;border-radius:100px;font-size:0.9rem;font-weight:500;transition:background 0.2s;}
+.lock-btn:hover{background:var(--blue-dark);}
+.lock-hint{margin-top:12px;font-size:0.75rem;color:rgba(255,255,255,0.3);}
+.lock-error{margin-top:10px;font-size:0.8rem;color:var(--red);opacity:0;transition:opacity 0.3s;}
+.lock-error.show{opacity:1;}
+
+/* ===== LAYOUT ===== */
+#app{display:none;}
+.layout{display:flex;height:100vh;}
+
+/* ===== SIDEBAR ===== */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sidebar-w);background:rgba(15,15,20,0.95);border-right:1px solid var(--border);padding:24px 12px;display:flex;flex-direction:column;z-index:100;}
+.sidebar-brand{font-size:0.8rem;font-weight:400;color:var(--text-secondary);margin-bottom:32px;padding:8px 12px;letter-spacing:0.3px;}
+.sidebar-brand span{color:var(--blue);font-weight:500;}
+.agenda-list{list-style:none;flex:1;}
+.agenda-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--radius-sm);margin-bottom:2px;cursor:pointer;transition:all 0.2s;font-size:0.78rem;color:var(--text-secondary);}
+.agenda-item:hover{background:rgba(255,255,255,0.04);}
+.agenda-item .step-num{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.04);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--text-tertiary);flex-shrink:0;}
+.agenda-item.done .step-num{background:rgba(52,168,83,0.15);border-color:var(--green);color:var(--green);}
+
+/* ===== SCROLL CONTAINER ===== */
+.scroll-container{margin-left:var(--sidebar-w);flex:1;height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;position:relative;}
+
+/* Background line art */
+.bg-art{position:fixed;top:0;left:var(--sidebar-w);right:0;bottom:0;pointer-events:none;z-index:0;overflow:hidden;}
+.bg-art svg{width:100%;height:100%;opacity:0.035;}
+
+/* ===== CARD PAGE ===== */
+.card-page{min-height:100vh;scroll-snap-align:start;display:flex;align-items:stretch;justify-content:center;padding:16px 40px;position:relative;z-index:1;perspective:1200px;}
+.card{width:100%;max-width:680px;max-height:calc(100vh - 32px);padding:24px 32px;background:var(--card-bg);backdrop-filter:blur(24px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);transform:rotateX(0deg);transition:transform 0.4s ease,opacity 0.4s ease;opacity:0.4;display:flex;flex-direction:column;margin:auto 0;overflow:hidden;}
+.card.in-view{opacity:1;transform:rotateX(0deg) translateY(0);}
+.card-page:not(.snapped) .card{transform:rotateX(3deg) translateY(20px);}
+
+.card-title{font-size:0.88rem;font-weight:500;color:var(--text);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.card-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:100px;font-size:0.68rem;color:var(--text-secondary);margin-right:6px;}
+
+/* ===== FORM ELEMENTS ===== */
+.form-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap;}
+.input{padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:0.82rem;background:rgba(255,255,255,0.03);color:var(--text);transition:border 0.2s;}
+.input:focus{border-color:var(--blue);background:rgba(255,255,255,0.05);}
+.input::placeholder{color:var(--text-tertiary);}
+.input-sm{padding:8px 12px;font-size:0.78rem;}
+select.input{color:var(--text);background:rgba(255,255,255,0.03);}
+select.input option{background:#1a1a24;color:var(--text);}
+.btn{padding:10px 20px;border-radius:100px;font-size:0.78rem;font-weight:500;transition:all 0.2s;}
+.btn-filled{background:var(--blue);color:#fff;}
+.btn-filled:hover{background:var(--blue-dark);}
+.btn-tonal{background:rgba(26,115,232,0.15);color:#8ab4f8;border:1px solid rgba(26,115,232,0.2);}
+.btn-tonal:hover{background:rgba(26,115,232,0.25);}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text-secondary);}
+.btn-outline:hover{background:rgba(255,255,255,0.04);}
+.btn-danger{background:rgba(234,67,53,0.1);color:#f28b82;border:1px solid rgba(234,67,53,0.2);}
+.btn-danger:hover{background:rgba(234,67,53,0.2);}
+.btn-sm{padding:6px 14px;font-size:0.72rem;}
+.btn-group{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+
+/* ===== TABLES ===== */
+.data-table{width:100%;border-collapse:separate;border-spacing:0;}
+.data-table th{text-align:left;padding:8px 10px;font-size:0.68rem;font-weight:500;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);white-space:nowrap;}
+.data-table td{padding:8px 10px;font-size:0.8rem;border-bottom:1px solid var(--border-light);vertical-align:middle;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tbody tr:hover td{background:rgba(255,255,255,0.06);}
+.member-scroll>div:hover{background:rgba(255,255,255,0.06);border-radius:4px;}
+.data-table input[type="checkbox"]{width:15px;height:15px;accent-color:var(--blue);cursor:pointer;}
+
+/* ===== RESULTS TABLE ===== */
+.results-table{width:100%;border-collapse:separate;border-spacing:0 3px;}
+.results-table tr{background:rgba(255,255,255,0.03);border-radius:var(--radius-sm);}
+.results-table tr:hover{background:rgba(255,255,255,0.08);}
+.results-table td{padding:10px 14px;font-size:0.8rem;}
+.results-table td:first-child{border-radius:var(--radius-sm) 0 0 var(--radius-sm);font-weight:500;color:var(--text);}
+.results-table td:nth-child(2){color:var(--text-secondary);font-size:0.72rem;}
+.results-table td:last-child{border-radius:0 var(--radius-sm) var(--radius-sm) 0;text-align:right;font-weight:600;color:#8ab4f8;white-space:nowrap;}
+.results-diff{margin-top:14px;padding:10px 14px;border-radius:var(--radius-sm);font-size:0.78rem;text-align:center;}
+.results-diff.ok{background:rgba(52,168,83,0.1);color:#81c995;border:1px solid rgba(52,168,83,0.2);}
+.results-diff.warn{background:rgba(251,188,5,0.1);color:#fdd663;border:1px solid rgba(251,188,5,0.2);}
+
+/* ===== NAV DOTS ===== */
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;gap:8px;}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.15);border:none;transition:all 0.3s;padding:0;}
+.nav-dot.active{background:var(--blue);transform:scale(1.4);}
+
+/* ===== TEXTAREA ===== */
+.textarea{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:0.78rem;line-height:1.6;resize:vertical;min-height:100px;background:rgba(255,255,255,0.03);color:var(--text);}
+.textarea:focus{border-color:var(--blue);}
+
+/* ===== MODAL ===== */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;}
+.modal-overlay.show{display:flex;}
+.modal{width:90%;max-width:500px;background:#1a1a24;border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:0 16px 48px rgba(0,0,0,0.5);}
+.modal h3{font-size:0.9rem;font-weight:500;margin-bottom:16px;color:var(--text);}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  :root{--sidebar-w:0px;}
+  .sidebar{display:none;}
+  .nav-dots{right:12px;}
+  .card-page{padding:20px 16px;}
+  .card{padding:28px 20px;border-radius:20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+  <div class="bg-lines">
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="none">
+      <path d="M0 400 Q300 200 600 400 T1200 400" stroke="#4285F4" fill="none" stroke-width="1"></path>
+      <path d="M0 300 Q400 500 800 300 T1200 300" stroke="#EA4335" fill="none" stroke-width="0.8"></path>
+      <path d="M0 500 Q350 350 700 500 T1200 500" stroke="#34A853" fill="none" stroke-width="0.8"></path>
+      <path d="M0 600 Q300 400 600 600 T1200 600" stroke="#FBBC05" fill="none" stroke-width="0.6"></path>
+      <circle cx="200" cy="200" r="80" stroke="#4285F4" fill="none" stroke-width="0.5" opacity="0.5"></circle>
+      <circle cx="900" cy="600" r="120" stroke="#EA4335" fill="none" stroke-width="0.5" opacity="0.4"></circle>
+    </svg>
+  </div>
+  <div class="lock-box">
+    <h2>EITS Warikan</h2>
+    <input class="lock-input" type="password" id="pwInput" placeholder="パスワードを入力" onkeydown="if(event.key==='Enter')document.getElementById('pwBtn').click()">
+    <button class="lock-btn" id="pwBtn" onclick="checkPw()">Unlock</button>
+    <div class="lock-hint">Hint: ShinoのAlias</div>
+    <div class="lock-error" id="pwError">パスワードが違います</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-brand"><span>EITS</span> Warikan</div>
+  <ul class="agenda-list">
+    <li class="agenda-item" data-step="0" onclick="goTo(0)"><span class="step-num">1</span>メンバー</li>
+    <li class="agenda-item" data-step="1" onclick="goTo(1)"><span class="step-num">2</span>送別品</li>
+    <li class="agenda-item" data-step="2" onclick="goTo(2)"><span class="step-num">3</span>金額</li>
+    <li class="agenda-item" data-step="3" onclick="goTo(3)"><span class="step-num">4</span>参加</li>
+    <li class="agenda-item" data-step="4" onclick="goTo(4)"><span class="step-num">5</span>結果</li>
+    <li class="agenda-item" data-step="5" onclick="goTo(5)"><span class="step-num">6</span>共有</li>
+  </ul>
+</nav>
+
+<!-- BG ART -->
+<div class="bg-art">
+  <svg viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+    <path d="M0 200 Q250 100 500 200 T1000 200" stroke="#4285F4" fill="none" stroke-width="1.5"></path>
+    <path d="M0 400 Q300 300 600 400 T1000 400" stroke="#EA4335" fill="none" stroke-width="1"></path>
+    <path d="M0 600 Q350 700 700 600 T1000 600" stroke="#FBBC05" fill="none" stroke-width="1"></path>
+    <path d="M0 800 Q200 700 500 800 T1000 800" stroke="#34A853" fill="none" stroke-width="0.8"></path>
+    <circle cx="150" cy="350" r="60" stroke="#34A853" fill="none" stroke-width="0.8"></circle>
+    <circle cx="800" cy="250" r="90" stroke="#4285F4" fill="none" stroke-width="0.6"></circle>
+    <circle cx="600" cy="750" r="40" stroke="#EA4335" fill="none" stroke-width="0.6"></circle>
+  </svg>
+</div>
+
+<!-- NAV DOTS -->
+<div class="nav-dots" id="navDots"></div>
+
+<!-- SCROLL CONTAINER -->
+<div class="scroll-container" id="scroller">
+
+<!-- PAGE 0: Members -->
+<div class="card-page" data-page="0">
+<div class="card">
+  <div class="card-title">メンバー</div>
+  <div class="btn-group">
+    <button class="btn btn-filled" onclick="loadPaid()">Paid読込</button>
+    <button class="btn btn-tonal" onclick="openBulkModal()">一括入力</button>
+  </div>
+  <div class="form-row" style="margin-top:8px;">
+    <input class="input" style="flex:1;" id="newName" placeholder="名前を追加" onkeydown="if(event.key==='Enter'){addMember();}">
+    <select class="input" id="newRole" style="width:80px;"><option value="L4">L4</option><option value="L5">L5</option><option value="TL">TL</option><option value="L6">L6</option></select>
+    <button class="btn btn-tonal btn-sm" onclick="addMember()">追加</button>
+  </div>
+  <div id="memberBadges" class="btn-group" style="margin-top:8px;"></div>
+  <div id="memberList" style="flex:1;overflow-y:auto;min-height:0;"></div>
+</div>
+</div>
+
+<!-- PAGE 1: Gift -->
+<div class="card-page" data-page="1">
+<div class="card">
+  <div class="card-title">送別品・プレゼント</div>
+  <div style="margin-bottom:12px;font-size:0.75rem;color:var(--text-tertiary);">品目と金額を入力して追加してください</div>
+  <div class="form-row">
+    <input class="input" style="flex:1;" id="giftDesc" placeholder="品目（例：花束）" onkeydown="if(event.key==='Enter')document.getElementById('giftAmt').focus();">
+    <input class="input" style="width:120px;" id="giftAmt" type="number" placeholder="金額" onkeydown="if(event.key==='Enter')addGift();">
+  </div>
+  <button class="btn btn-filled" onclick="addGift()" style="margin-top:8px;">送別品を追加</button>
+  <div id="giftList" style="margin-top:12px;"></div>
+  <div id="giftTotal" style="margin-top:8px;font-size:0.78rem;color:var(--text-secondary);"></div>
+  <div style="margin-top:12px;font-size:0.72rem;color:var(--text-tertiary);">※ 送別品がない場合はこのページをスキップしてOK</div>
+</div>
+</div>
+
+<!-- PAGE 2: Amount -->
+<div class="card-page" data-page="2">
+<div class="card">
+  <div class="card-title">金額設定</div>
+  <div style="margin-bottom:14px;">
+    <label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:4px;">合計金額（税込）</label>
+    <input class="input" id="totalAmount" type="number" placeholder="例: 150000" style="width:200px;" onkeydown="if(event.key==='Enter')calculate();">
+  </div>
+  <details style="margin-top:12px;">
+    <summary style="font-size:0.75rem;color:var(--text-tertiary);cursor:pointer;">1人あたり × 人数で計算</summary>
+    <div class="form-row" style="margin-top:8px;">
+      <input class="input input-sm" id="perPerson" type="number" placeholder="1人あたり" style="width:120px;">
+      <span style="font-size:0.8rem;color:var(--text-secondary);">×</span>
+      <input class="input input-sm" id="headCount" type="number" placeholder="人数" style="width:80px;">
+      <button class="btn btn-outline btn-sm" onclick="calcFromPer()">反映</button>
+    </div>
+  </details>
+  <div style="margin-top:18px;">
+    <label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:6px;">比率</label>
+    <div class="form-row">
+      <span style="font-size:0.75rem;width:26px;color:var(--text-secondary);">L4</span><input class="input input-sm ratio-input" data-role="L4" type="number" step="0.1" value="1.0" style="width:60px;" onkeydown="if(event.key==='Enter')calculate();">
+      <span style="font-size:0.75rem;width:26px;color:var(--text-secondary);">L5</span><input class="input input-sm ratio-input" data-role="L5" type="number" step="0.1" value="1.3" style="width:60px;" onkeydown="if(event.key==='Enter')calculate();">
+      <span style="font-size:0.75rem;width:26px;color:var(--text-secondary);">TL</span><input class="input input-sm ratio-input" data-role="TL" type="number" step="0.1" value="1.5" style="width:60px;" onkeydown="if(event.key==='Enter')calculate();">
+      <span style="font-size:0.75rem;width:26px;color:var(--text-secondary);">L6</span><input class="input input-sm ratio-input" data-role="L6" type="number" step="0.1" value="2.0" style="width:60px;" onkeydown="if(event.key==='Enter')calculate();">
+    </div>
+  </div>
+  <button class="btn btn-filled" onclick="confirmAmount()" style="margin-top:16px;">金額を確定</button>
+</div>
+</div>
+
+<!-- PAGE 3: Attendance -->
+<div class="card-page" data-page="3">
+<div class="card">
+  <div class="card-title">参加チェック</div>
+  <div class="btn-group">
+    <button class="btn btn-outline btn-sm" onclick="bulkCheck('soubet',true)">送別品 全選択</button>
+    <button class="btn btn-outline btn-sm" onclick="bulkCheck('soubet',false)">全解除</button>
+    <button class="btn btn-outline btn-sm" onclick="bulkCheck('ichi',true)">1次 全選択</button>
+    <button class="btn btn-outline btn-sm" onclick="bulkCheck('ichi',false)">全解除</button>
+    <button class="btn btn-outline btn-sm" onclick="bulkCheck('ni',true)">2次 全選択</button>
+    <button class="btn btn-outline btn-sm" onclick="bulkCheck('ni',false)">全解除</button>
+  </div>
+  <div style="overflow-x:auto;overflow-y:auto;max-height:calc(100vh - 220px);">
+    <table class="data-table" id="attendTable">
+      <thead><tr><th>名前</th><th>役職</th><th id="thSoubet">送別品</th><th id="thIchi">1次</th><th id="thNi">2次</th></tr></thead>
+      <tbody id="attendBody"></tbody>
+    </table>
+  </div>
+  <div style="margin-top:16px;text-align:center;">
+    <button class="btn btn-filled" onclick="calculate()" style="padding:14px 40px;font-size:0.85rem;">計算する</button>
+  </div>
+</div>
+</div>
+
+<!-- PAGE 4: Results -->
+<div class="card-page" data-page="4">
+<div class="card">
+  <div class="card-title">支払い一覧</div>
+  <div id="resultsTotals" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;"></div>
+  <div id="resultsSummary" style="font-size:0.75rem;color:var(--text-secondary);margin-bottom:8px;"></div>
+  <div style="overflow-y:auto;flex:1;min-height:0;">
+    <table class="results-table"><tbody id="resultsBody"></tbody></table>
+  </div>
+  <div id="resultsDiff" style="margin-top:8px;flex-shrink:0;"></div>
+</div>
+</div>
+
+<!-- PAGE 5: Slack + Data -->
+<div class="card-page" data-page="5">
+<div class="card">
+  <div class="card-title">Slack連絡文 / データ管理</div>
+  <div style="margin-bottom:16px;">
+    <label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:4px;">PayPayリンク</label>
+    <input class="input" id="paypayLink" placeholder="https://qr.paypay.ne.jp/..." style="width:100%;">
+  </div>
+  <div style="margin-bottom:16px;">
+    <label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:4px;">振込先口座</label>
+    <input class="input" id="bankInfo" placeholder="例: 三菱UFJ ○○支店 普通 1234567 シノヅカ トモヒロ" style="width:100%;">
+  </div>
+  <button class="btn btn-tonal" onclick="genSlack()" style="margin-bottom:12px;">連絡文を生成</button>
+  <textarea class="textarea" id="slackMsg" rows="5" placeholder="計算後に生成されます"></textarea>
+  <div class="btn-group" style="margin-top:8px;">
+    <button class="btn btn-outline btn-sm" onclick="copySlack()">コピー</button>
+  </div>
+  <hr style="border:none;border-top:1px solid var(--border);margin:20px 0;">
+  <div class="btn-group">
+    <button class="btn btn-outline btn-sm" onclick="saveData()">保存</button>
+    <button class="btn btn-outline btn-sm" onclick="restoreData()">復元</button>
+    <button class="btn btn-danger btn-sm" onclick="clearAll()">全クリア</button>
+  </div>
+</div>
+</div>
+
+</div><!-- /scroll-container -->
+</div><!-- /layout -->
+</div><!-- /app -->
+
+<!-- BULK MODAL -->
+<div class="modal-overlay" id="bulkModal">
+  <div class="modal">
+    <h3>メンバー一括入力</h3>
+    <p style="font-size:0.72rem;color:var(--text-secondary);margin-bottom:12px;">1行1名: 名前(tab/comma)役職</p>
+    <textarea class="textarea" id="bulkText" placeholder="田中太郎,L5
+山田花子,TL"></textarea>
+    <div class="btn-group" style="margin-top:16px;justify-content:flex-end;">
+      <button class="btn btn-outline" onclick="closeBulkModal()">キャンセル</button>
+      <button class="btn btn-filled" onclick="applyBulk()">追加</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== PASSWORD =====
+let pwAttempts=0;
+function checkPw(){
+  if(document.getElementById('pwInput').value==='tmshino'){
+    document.getElementById('lockScreen').style.display='none';
+    document.getElementById('app').style.display='block';
+    initApp();
+  } else {
+    pwAttempts++;
+    document.getElementById('pwError').classList.add('show');
+    if(pwAttempts>=2)window.location.href='https://www.google.com';
+  }
+}
+
+// ===== DATA =====
+let members=[],gifts=[],results=[];
+const PAID_MEMBERS=[
+  {name:'Hayashi Saki',role:'TL'},{name:'Izawa Mariko',role:'TL'},
+  {name:'Nakamura Toru',role:'L6'},{name:'Oh Moonsun',role:'L5'},
+  {name:'Oki Ryosuke',role:'L5'},{name:'Nakajima Ryota',role:'L6'},
+  {name:'Naito Saki',role:'L4'},{name:'Murakami Arisa',role:'L5'},
+  {name:'Sato Ayumu',role:'L5'},{name:'Mori Daisuke',role:'L5'},
+  {name:'Hama Ayaka',role:'L5'},{name:'Lee Yun',role:'L4'},
+  {name:'Tsuchiya Ryota',role:'L4'},{name:'Masuda Mantaro',role:'TL'},
+  {name:'Sakata Rokutoshi',role:'L5'},{name:'Shinozuka Tomohiro',role:'L5'},
+  {name:'Gao Yuan',role:'L4'},{name:'Inoue Atsushi',role:'TL'},
+  {name:'Mita Ryohei',role:'L4'},{name:'Hata Yasunori',role:'TL'},
+  {name:'Shimamoto Mikako',role:'L4'},{name:'Murakami Takuya',role:'L4'},
+  {name:'Yamazaki Mamoru',role:'L4'},{name:'Adachi Yuta',role:'L4'},
+  {name:'Inoue Ryoga',role:'L4'},{name:'Kainuma Hidetaka',role:'L5'},
+  {name:'Ozaki Kotaro',role:'L4'},{name:'Hayashi Mai',role:'L4'}
+];
+
+// ===== INIT =====
+function initApp(){
+  buildNavDots();
+  setupScrollObserver();
+  setupWheelControl();
+  tryRestore();
+  renderAttendance();
+}
+
+// ===== WHEEL CONTROL (1 page per scroll, with edge buffer) =====
+let currentPage=0;
+let wheelLock=false;
+let edgeScrollCount=0;
+let lastEdgeDir=0;
+function setupWheelControl(){
+  const scroller=document.getElementById('scroller');
+  scroller.addEventListener('wheel',function(e){
+    // Check if the event target is inside a scrollable element
+    let el=e.target;
+    while(el&&el!==scroller){
+      if(el.scrollHeight>el.clientHeight+2){
+        const atTop=el.scrollTop<=0&&e.deltaY<0;
+        const atBottom=el.scrollTop+el.clientHeight>=el.scrollHeight-2&&e.deltaY>0;
+        if(!atTop&&!atBottom){edgeScrollCount=0;return;} // let inner scroll happen
+      }
+      el=el.parentElement;
+    }
+    e.preventDefault();
+    if(wheelLock)return;
+    // Edge buffer: need 2 consecutive scrolls at edge in same direction
+    const dir=e.deltaY>0?1:-1;
+    if(dir!==lastEdgeDir){edgeScrollCount=0;lastEdgeDir=dir;}
+    edgeScrollCount++;
+    if(edgeScrollCount<2)return; // first scroll at edge = absorb
+    edgeScrollCount=0;
+    wheelLock=true;
+    const pages=document.querySelectorAll('.card-page');
+    if(dir>0&&currentPage<pages.length-1)currentPage++;
+    else if(dir<0&&currentPage>0)currentPage--;
+    pages[currentPage].scrollIntoView({behavior:'smooth'});
+    setTimeout(()=>{wheelLock=false;},800);
+  },{passive:false});
+}
+
+// ===== NAV DOTS =====
+function buildNavDots(){
+  const c=document.getElementById('navDots');
+  const pages=document.querySelectorAll('.card-page');
+  c.innerHTML='';
+  for(let i=0;i<pages.length;i++){
+    const d=document.createElement('button');
+    d.className='nav-dot'+(i===0?' active':'');
+    d.onclick=()=>goTo(i);
+    c.appendChild(d);
+  }
+}
+
+// ===== SCROLL OBSERVER =====
+function setupScrollObserver(){
+  const scroller=document.getElementById('scroller');
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      const card=e.target.querySelector('.card');
+      if(e.isIntersecting){
+        e.target.classList.add('snapped');
+        if(card)card.classList.add('in-view');
+        // Update dots
+        const idx=parseInt(e.target.dataset.page);
+        currentPage=idx;
+        document.querySelectorAll('.nav-dot').forEach((d,i)=>{
+          d.classList.toggle('active',i===idx);
+        });
+      } else {
+        e.target.classList.remove('snapped');
+        if(card)card.classList.remove('in-view');
+      }
+    });
+  },{root:scroller,threshold:0.5});
+  document.querySelectorAll('.card-page').forEach(p=>obs.observe(p));
+}
+
+function goTo(i){
+  const page=document.querySelectorAll('.card-page')[i];
+  if(page)page.scrollIntoView({behavior:'smooth'});
+}
+
+// ===== MEMBERS =====
+function loadPaid(){
+  members=PAID_MEMBERS.map(m=>({...m,soubet:true,ichi:true,ni:false}));
+  renderMembers();renderAttendance();
+  markDone(0);
+}
+function addMember(){
+  const n=document.getElementById('newName').value.trim();
+  const r=document.getElementById('newRole').value;
+  if(!n)return;
+  members.push({name:n,role:r,soubet:true,ichi:true,ni:false});
+  document.getElementById('newName').value='';
+  renderMembers();renderAttendance();
+}
+function removeMember(i){members.splice(i,1);renderMembers();renderAttendance();}
+function renderMembers(){
+  const c=document.getElementById('memberList');
+  const b=document.getElementById('memberBadges');
+  if(!members.length){c.innerHTML='';b.innerHTML='';return;}
+  const counts={L4:0,L5:0,TL:0,L6:0};
+  members.forEach(m=>counts[m.role]=(counts[m.role]||0)+1);
+  b.innerHTML=Object.entries(counts).filter(([,v])=>v>0).map(([k,v])=>`<span class="card-badge">${k}: ${v}</span>`).join('');
+  c.innerHTML='<div class="member-scroll" style="font-size:0.75rem;">'+
+    members.map((m,i)=>`<div style="display:flex;justify-content:space-between;padding:6px 8px;border-bottom:1px solid var(--border-light);transition:background 0.15s;"><span style="color:var(--text);">${m.name} <span style="color:var(--text-tertiary);">${m.role}</span></span><button style="background:none;border:none;color:var(--red);font-size:0.68rem;cursor:pointer;" onclick="removeMember(${i})">削除</button></div>`).join('')+'</div>';
+  if(members.length)markDone(0);
+}
+
+// ===== GIFTS =====
+function addGift(){
+  const d=document.getElementById('giftDesc').value.trim();
+  const a=parseInt(document.getElementById('giftAmt').value)||0;
+  if(!d||!a)return;
+  gifts.push({desc:d,amount:a});
+  document.getElementById('giftDesc').value='';document.getElementById('giftAmt').value='';
+  renderGifts();
+}
+function removeGift(i){gifts.splice(i,1);renderGifts();}
+function renderGifts(){
+  const c=document.getElementById('giftList');
+  const t=document.getElementById('giftTotal');
+  if(!gifts.length){c.innerHTML='';t.innerHTML='';return;}
+  c.innerHTML=gifts.map((g,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border-light);font-size:0.78rem;"><span>${g.desc}</span><span style="display:flex;align-items:center;gap:8px;"><span style="color:#8ab4f8;font-weight:500;">¥${g.amount.toLocaleString()}</span><button style="background:none;border:none;color:var(--red);font-size:0.68rem;cursor:pointer;" onclick="removeGift(${i})">削除</button></span></div>`).join('');
+  t.innerHTML=`合計: ¥${gifts.reduce((s,g)=>s+g.amount,0).toLocaleString()}`;
+  markDone(1);
+}
+
+// ===== ATTENDANCE =====
+function renderAttendance(){
+  const tb=document.getElementById('attendBody');
+  if(!members.length){tb.innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--text-tertiary);padding:20px;font-size:0.78rem;">メンバーを読込してください</td></tr>';return;}
+  tb.innerHTML=members.map((m,i)=>`<tr><td style="font-weight:500;">${m.name}</td><td style="color:var(--text-secondary);">${m.role}</td><td><input type="checkbox" ${m.soubet?'checked':''} onchange="members[${i}].soubet=this.checked;updateCheckCounts();"></td><td><input type="checkbox" ${m.ichi?'checked':''} onchange="members[${i}].ichi=this.checked;updateCheckCounts();"></td><td><input type="checkbox" ${m.ni?'checked':''} onchange="members[${i}].ni=this.checked;updateCheckCounts();"></td></tr>`).join('');
+  updateCheckCounts();
+}
+function updateCheckCounts(){
+  const total=members.length;
+  const s=members.filter(m=>m.soubet).length;
+  const i=members.filter(m=>m.ichi).length;
+  const n=members.filter(m=>m.ni).length;
+  document.getElementById('thSoubet').textContent='送別品 '+s+'/'+total;
+  document.getElementById('thIchi').textContent='1次 '+i+'/'+total;
+  document.getElementById('thNi').textContent='2次 '+n+'/'+total;
+}
+function bulkCheck(type,val){members.forEach(m=>m[type]=val);renderAttendance();}
+
+// ===== AMOUNT =====
+function calcFromPer(){
+  const p=parseInt(document.getElementById('perPerson').value)||0;
+  const h=parseInt(document.getElementById('headCount').value)||0;
+  if(p&&h)document.getElementById('totalAmount').value=p*h;
+}
+
+// ===== CALCULATE =====
+function calculate(){
+  const total=parseInt(document.getElementById('totalAmount').value)||0;
+  if(!members.length){alert('メンバーを設定してください');return;}
+  if(!total&&!gifts.length){alert('金額または送別品を設定してください');return;}
+  const ratios={};
+  document.querySelectorAll('.ratio-input').forEach(el=>{ratios[el.dataset.role]=parseFloat(el.value)||1;});
+  
+  // Gift: split equally among soubet-checked members (separate from party)
+  const giftTotal=gifts.reduce((s,g)=>s+g.amount,0);
+  const soubetMembers=members.filter(m=>m.soubet);
+  const giftPer=soubetMembers.length?giftTotal/soubetMembers.length:0;
+  
+  // Party: weighted split among 1次-checked members
+  const ichiMembers=members.filter(m=>m.ichi);
+  const ichiWeight=ichiMembers.reduce((s,m)=>s+(ratios[m.role]||1),0);
+  const ichiBase=ichiWeight?total/ichiWeight:0;
+
+  results=members.map(m=>{
+    let giftAmt=0, partyAmt=0;
+    if(m.soubet) giftAmt=Math.round(giftPer/100)*100;
+    if(m.ichi) partyAmt=Math.round((ichiBase*(ratios[m.role]||1))/100)*100;
+    return{name:m.name,role:m.role,amount:giftAmt+partyAmt,gift:giftAmt,party:partyAmt};
+  });
+  
+  const grandTotal=total+giftTotal;
+  renderResults(grandTotal);
+  markDone(3);
+  markDone(4);
+  goTo(4);
+}
+function renderResults(total){
+  const tb=document.getElementById('resultsBody');
+  const hasGifts=gifts.length>0;
+  if(hasGifts){
+    tb.innerHTML=results.map(r=>`<tr><td>${r.name}</td><td>${r.role}</td><td style="font-size:0.68rem;color:var(--text-tertiary);">飲:¥${r.party.toLocaleString()} 品:¥${r.gift.toLocaleString()}</td><td style="text-align:right;font-weight:600;color:#8ab4f8;white-space:nowrap;">¥${r.amount.toLocaleString()}</td></tr>`).join('');
+  } else {
+    tb.innerHTML=results.map(r=>`<tr><td>${r.name}</td><td>${r.role}</td><td>¥${r.amount.toLocaleString()}</td></tr>`).join('');
+  }
+  const sum=results.reduce((s,r)=>s+r.amount,0);
+  const giftSum=results.reduce((s,r)=>s+(r.gift||0),0);
+  const partySum=results.reduce((s,r)=>s+(r.party||0),0);
+  
+  // Totals display (outside scroll)
+  const totalsEl=document.getElementById('resultsTotals');
+  let totalsHtml='<div style="padding:8px 14px;background:rgba(138,180,248,0.08);border:1px solid rgba(138,180,248,0.2);border-radius:8px;font-size:0.75rem;"><span style="color:var(--text-secondary);">合計</span> <span style="color:#8ab4f8;font-weight:600;">¥'+sum.toLocaleString()+'</span></div>';
+  if(hasGifts){
+    totalsHtml+='<div style="padding:8px 14px;background:rgba(129,201,149,0.08);border:1px solid rgba(129,201,149,0.2);border-radius:8px;font-size:0.75rem;"><span style="color:var(--text-secondary);">飲食</span> <span style="color:#81c995;font-weight:600;">¥'+partySum.toLocaleString()+'</span></div>';
+    totalsHtml+='<div style="padding:8px 14px;background:rgba(253,214,99,0.08);border:1px solid rgba(253,214,99,0.2);border-radius:8px;font-size:0.75rem;"><span style="color:var(--text-secondary);">送別品</span> <span style="color:#fdd663;font-weight:600;">¥'+giftSum.toLocaleString()+'</span></div>';
+  }
+  totalsEl.innerHTML=totalsHtml;
+  
+  document.getElementById('resultsSummary').textContent=results.filter(r=>r.amount>0).length+'名';
+  const diff=sum-total;
+  const dd=document.getElementById('resultsDiff');
+  dd.innerHTML=diff===0?'<div class="results-diff ok">差分: ¥0（ピッタリ）</div>':`<div class="results-diff warn">差分: ¥${diff.toLocaleString()}（端数丸め差）</div>`;
+}
+// ===== SLACK =====
+function genSlack(){
+  if(!results.length){alert('先に計算してください');return;}
+  const paypay=document.getElementById('paypayLink').value.trim();
+  const bank=document.getElementById('bankInfo').value.trim();
+  let msg='*支払いのお知らせ*\n\n';
+  results.filter(r=>r.amount>0).forEach(r=>{msg+=`• ${r.name}（${r.role}）: ¥${r.amount.toLocaleString()}\n`;});
+  msg+=`\n合計: ¥${results.reduce((s,r)=>s+r.amount,0).toLocaleString()}\n`;
+  msg+='\n--- 支払い方法 ---\n';
+  if(paypay) msg+=`PayPay: ${paypay}\n`;
+  if(bank) msg+=`振込先: ${bank}\n`;
+  if(!paypay&&!bank) msg+='[支払い方法を入力してください]\n';
+  msg+='\n期限: [ここに期限を入力]';
+  document.getElementById('slackMsg').value=msg;
+  markDone(5);
+}
+function copySlack(){
+  const t=document.getElementById('slackMsg');t.select();
+  try{document.execCommand('copy');}catch(e){}
+}
+
+// ===== DATA =====
+function saveData(){
+  try{localStorage.setItem('warikan_data',JSON.stringify({members,gifts,total:document.getElementById('totalAmount').value}));}catch(e){}
+  alert('保存しました');
+}
+function restoreData(){
+  try{const d=JSON.parse(localStorage.getItem('warikan_data'));if(!d)return alert('データなし');members=d.members||[];gifts=d.gifts||[];document.getElementById('totalAmount').value=d.total||'';renderMembers();renderGifts();renderAttendance();}catch(e){alert('復元失敗');}
+}
+function tryRestore(){
+  try{const d=JSON.parse(localStorage.getItem('warikan_data'));if(d&&d.members&&d.members.length){members=d.members;gifts=d.gifts||[];document.getElementById('totalAmount').value=d.total||'';renderMembers();renderGifts();renderAttendance();}}catch(e){}
+}
+function clearAll(){
+  if(!confirm('全データをクリアしますか？'))return;
+  members=[];gifts=[];results=[];
+  try{localStorage.removeItem('warikan_data');}catch(e){}
+  renderMembers();renderGifts();renderAttendance();
+  document.getElementById('totalAmount').value='';
+  document.getElementById('resultsBody').innerHTML='';
+  document.getElementById('resultsDiff').innerHTML='';
+  document.getElementById('resultsSummary').textContent='';
+  document.querySelectorAll('.agenda-item').forEach(el=>el.classList.remove('done'));
+}
+
+// ===== BULK MODAL =====
+function openBulkModal(){document.getElementById('bulkModal').classList.add('show');}
+function closeBulkModal(){document.getElementById('bulkModal').classList.remove('show');}
+function applyBulk(){
+  const text=document.getElementById('bulkText').value.trim();
+  if(!text){closeBulkModal();return;}
+  text.split('\n').forEach(line=>{
+    const parts=line.split(/[,\t]/);
+    if(parts.length>=2){const name=parts[0].trim();const role=parts[1].trim().toUpperCase();if(name&&['L4','L5','TL','L6'].includes(role)){members.push({name,role,soubet:true,ichi:true,ni:false});}}
+  });
+  document.getElementById('bulkText').value='';
+  closeBulkModal();renderMembers();renderAttendance();
+}
+
+// ===== HELPERS =====
+function markDone(i){
+  const item=document.querySelectorAll('.agenda-item')[i];
+  if(item)item.classList.add('done');
+}
+function confirmAmount(){
+  const total=parseInt(document.getElementById('totalAmount').value)||0;
+  if(!total){alert('金額を入力してください');return;}
+  markDone(2);
+  // Flash confirmation
+  const btn=event.target;
+  btn.textContent='確定しました';btn.style.background='var(--green)';
+  setTimeout(()=>{btn.textContent='金額を確定';btn.style.background='';},1500);
+}
+</script>
+
+
+</body></html>
