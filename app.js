@@ -75,6 +75,7 @@ function initApp(){
   renderAll();
   setupAutoSave();
   setupNavSpy();
+  setupMotion();
   if(window.matchMedia('(min-width:721px)').matches)setTimeout(()=>byId('newName').focus(),120);
 }
 
@@ -243,10 +244,10 @@ function renderAttendance(){
 
   body.innerHTML=members.map((member,index)=>{
     const name=escapeHtml(member.name);
-    return '<tr><td class="table-name">'+name+'</td><td class="table-role">'+member.role+'</td>'+
-      '<td><input type="checkbox" '+(member.soubet?'checked':'')+' data-attendance-index="'+index+'" data-attendance-type="soubet" aria-label="'+name+'さんを送別品の対象にする"></td>'+
-      '<td><input type="checkbox" '+(member.ichi?'checked':'')+' data-attendance-index="'+index+'" data-attendance-type="ichi" aria-label="'+name+'さんを1次会の対象にする"></td>'+
-      '<td><input type="checkbox" '+(member.ni?'checked':'')+' data-attendance-index="'+index+'" data-attendance-type="ni" aria-label="'+name+'さんを2次会の対象にする"></td></tr>';
+    return '<tr data-name="'+name+'" data-role="'+member.role+'"><td class="table-name">'+name+'</td><td class="table-role">'+member.role+'</td>'+
+      '<td data-label="送別品"><input type="checkbox" '+(member.soubet?'checked':'')+' data-attendance-index="'+index+'" data-attendance-type="soubet" aria-label="'+name+'さんを送別品の対象にする"></td>'+
+      '<td data-label="1次"><input type="checkbox" '+(member.ichi?'checked':'')+' data-attendance-index="'+index+'" data-attendance-type="ichi" aria-label="'+name+'さんを1次会の対象にする"></td>'+
+      '<td data-label="2次"><input type="checkbox" '+(member.ni?'checked':'')+' data-attendance-index="'+index+'" data-attendance-type="ni" aria-label="'+name+'さんを2次会の対象にする"></td></tr>';
   }).join('');
   updateCheckCounts();
 }
@@ -545,6 +546,58 @@ function updateOverview(){
   const total=numberValue('totalAmount')+numberValue('totalAmount2')+gifts.reduce((sum,gift)=>sum+gift.amount,0);
   byId('overviewTotal').textContent=formatYen(total);
   byId('overviewMembers').textContent='メンバー '+members.length+'名';
+  const overview=byId('overviewTotal')?.closest('.hero-total');
+  if(overview){
+    overview.classList.remove('is-updating');
+    void overview.offsetWidth;
+    overview.classList.add('is-updating');
+    setTimeout(()=>overview.classList.remove('is-updating'),320);
+  }
+}
+
+function setupMotion(){
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const items=[...document.querySelectorAll('.section-heading,.panel,.data-bar')];
+  items.forEach(item=>item.classList.add('reveal-item'));
+  if(reduced||!('IntersectionObserver' in window)){
+    items.forEach(item=>item.classList.add('is-visible'));
+    return;
+  }
+
+  document.documentElement.classList.add('motion-ready');
+  const revealObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },{rootMargin:'0px 0px -7% 0px',threshold:.08});
+  items.forEach((item,index)=>{
+    item.style.transitionDelay=(index%3)*55+'ms';
+    revealObserver.observe(item);
+  });
+
+  const scenes=[...document.querySelectorAll('.hero,.section')];
+  let ticking=false;
+  const update=()=>{
+    const viewport=window.visualViewport?.height||window.innerHeight;
+    scenes.forEach(scene=>{
+      const rect=scene.getBoundingClientRect();
+      const offset=(rect.top+rect.height/2-viewport/2)/viewport;
+      const clamped=Math.max(-1.4,Math.min(1.4,offset));
+      scene.style.setProperty('--parallax-y',(-clamped*54).toFixed(1)+'px');
+      if(scene.classList.contains('hero'))scene.style.setProperty('--hero-angle',(clamped*9).toFixed(1)+'deg');
+    });
+    ticking=false;
+  };
+  const requestUpdate=()=>{
+    if(!ticking){ticking=true;requestAnimationFrame(update)}
+  };
+  addEventListener('scroll',requestUpdate,{passive:true});
+  addEventListener('resize',requestUpdate,{passive:true});
+  window.visualViewport?.addEventListener('resize',requestUpdate,{passive:true});
+  update();
 }
 
 function setupAutoSave(){
