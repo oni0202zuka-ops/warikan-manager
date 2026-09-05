@@ -557,6 +557,18 @@ function updateOverview(){
 
 function setupMotion(){
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const scenes=[...document.querySelectorAll('.hero,.section')];
+  scenes.forEach((scene,index)=>{
+    scene.classList.add('depth-stage');
+    scene.dataset.depthIndex=String(index);
+    if(!scene.querySelector('.depth-scene')){
+      const depthScene=document.createElement('div');
+      depthScene.className='depth-scene';
+      depthScene.setAttribute('aria-hidden','true');
+      depthScene.innerHTML='<span class="depth-layer depth-back"></span><span class="depth-layer depth-mid"></span><span class="depth-layer depth-front"></span>';
+      scene.prepend(depthScene);
+    }
+  });
   const items=[...document.querySelectorAll('.section-heading,.panel,.data-bar')];
   items.forEach(item=>item.classList.add('reveal-item'));
   if(reduced||!('IntersectionObserver' in window)){
@@ -578,7 +590,6 @@ function setupMotion(){
     revealObserver.observe(item);
   });
 
-  const scenes=[...document.querySelectorAll('.hero,.section')];
   let ticking=false;
   const update=()=>{
     const viewport=window.visualViewport?.height||window.innerHeight;
@@ -586,7 +597,17 @@ function setupMotion(){
       const rect=scene.getBoundingClientRect();
       const offset=(rect.top+rect.height/2-viewport/2)/viewport;
       const clamped=Math.max(-1.4,Math.min(1.4,offset));
+      const focus=1-Math.min(1,Math.abs(clamped));
       scene.style.setProperty('--parallax-y',(-clamped*54).toFixed(1)+'px');
+      scene.style.setProperty('--back-y',(-clamped*24).toFixed(1)+'px');
+      scene.style.setProperty('--mid-y',(-clamped*52).toFixed(1)+'px');
+      scene.style.setProperty('--front-y',(-clamped*92).toFixed(1)+'px');
+      scene.style.setProperty('--back-z',(-122+focus*24).toFixed(1)+'px');
+      scene.style.setProperty('--mid-z',(-38+focus*36).toFixed(1)+'px');
+      scene.style.setProperty('--front-z',(56+focus*88).toFixed(1)+'px');
+      scene.style.setProperty('--back-scale',(1.15-focus*.04).toFixed(3));
+      scene.style.setProperty('--mid-scale',(1.07+focus*.035).toFixed(3));
+      scene.style.setProperty('--front-rotate',(-11+focus*15).toFixed(1)+'deg');
       if(scene.classList.contains('hero'))scene.style.setProperty('--hero-angle',(clamped*9).toFixed(1)+'deg');
     });
     ticking=false;
@@ -597,6 +618,32 @@ function setupMotion(){
   addEventListener('scroll',requestUpdate,{passive:true});
   addEventListener('resize',requestUpdate,{passive:true});
   window.visualViewport?.addEventListener('resize',requestUpdate,{passive:true});
+  scenes.forEach(scene=>{
+    scene.addEventListener('pointermove',event=>{
+      if(event.pointerType==='touch'&&!event.isPrimary)return;
+      const rect=scene.getBoundingClientRect();
+      const x=Math.max(-1,Math.min(1,(event.clientX-rect.left)/rect.width*2-1));
+      const y=Math.max(-1,Math.min(1,(event.clientY-rect.top)/rect.height*2-1));
+      scene.style.setProperty('--pointer-back-x',(-x*6).toFixed(1)+'px');
+      scene.style.setProperty('--pointer-back-y',(-y*4).toFixed(1)+'px');
+      scene.style.setProperty('--pointer-mid-x',(x*10).toFixed(1)+'px');
+      scene.style.setProperty('--pointer-mid-y',(y*7).toFixed(1)+'px');
+      scene.style.setProperty('--pointer-front-x',(x*21).toFixed(1)+'px');
+      scene.style.setProperty('--pointer-front-y',(y*14).toFixed(1)+'px');
+      scene.style.setProperty('--tilt-x',(-y*2.2).toFixed(2)+'deg');
+      scene.style.setProperty('--tilt-y',(x*2.8).toFixed(2)+'deg');
+    },{passive:true});
+    scene.addEventListener('pointerleave',()=>{
+      scene.style.setProperty('--pointer-back-x','0px');
+      scene.style.setProperty('--pointer-back-y','0px');
+      scene.style.setProperty('--pointer-mid-x','0px');
+      scene.style.setProperty('--pointer-mid-y','0px');
+      scene.style.setProperty('--pointer-front-x','0px');
+      scene.style.setProperty('--pointer-front-y','0px');
+      scene.style.setProperty('--tilt-x','0deg');
+      scene.style.setProperty('--tilt-y','0deg');
+    },{passive:true});
+  });
   update();
 }
 
