@@ -244,7 +244,7 @@ function renderAttendance(){
 
   body.innerHTML=members.map((member,index)=>{
     const name=escapeHtml(member.name);
-    return '<tr data-name="'+name+'" data-role="'+member.role+'"><td class="table-name">'+name+'</td><td class="table-role">'+member.role+'</td>'+
+    return '<tr data-name="'+name+'" data-role="'+member.role+'" style="animation-delay:'+Math.min(index,10)*24+'ms"><td class="table-name">'+name+'</td><td class="table-role">'+member.role+'</td>'+
       '<td data-label="送別品"><input type="checkbox" '+(member.soubet?'checked':'')+' data-attendance-index="'+index+'" data-attendance-type="soubet" aria-label="'+name+'さんを送別品の対象にする"></td>'+
       '<td data-label="1次"><input type="checkbox" '+(member.ichi?'checked':'')+' data-attendance-index="'+index+'" data-attendance-type="ichi" aria-label="'+name+'さんを1次会の対象にする"></td>'+
       '<td data-label="2次"><input type="checkbox" '+(member.ni?'checked':'')+' data-attendance-index="'+index+'" data-attendance-type="ni" aria-label="'+name+'さんを2次会の対象にする"></td></tr>';
@@ -570,6 +570,8 @@ function setupMotion(){
     }
   });
   const items=[...document.querySelectorAll('.section-heading,.panel,.data-bar')];
+  const cards=[...document.querySelectorAll('.hero-copy,.hero-total,.section-heading,.panel,.data-bar')];
+  cards.forEach(card=>card.classList.add('depth-card'));
   items.forEach(item=>item.classList.add('reveal-item'));
   if(reduced||!('IntersectionObserver' in window)){
     items.forEach(item=>item.classList.add('is-visible'));
@@ -590,30 +592,50 @@ function setupMotion(){
     revealObserver.observe(item);
   });
 
-  let ticking=false;
-  const update=()=>{
+  const motionStates=new Map(scenes.map(scene=>[scene,{
+    offset:0,
+    cards:[...scene.querySelectorAll('.depth-card')]
+  }]));
+  let motionFrame=0;
+  const drawMotion=()=>{
     const viewport=window.visualViewport?.height||window.innerHeight;
-    scenes.forEach(scene=>{
+    let keepAnimating=false;
+    scenes.forEach((scene,sceneIndex)=>{
       const rect=scene.getBoundingClientRect();
-      const offset=(rect.top+rect.height/2-viewport/2)/viewport;
-      const clamped=Math.max(-1.4,Math.min(1.4,offset));
+      const target=Math.max(-1.35,Math.min(1.35,(rect.top+rect.height/2-viewport/2)/viewport));
+      const state=motionStates.get(scene);
+      const delta=target-state.offset;
+      state.offset+=delta*.14;
+      if(Math.abs(delta)>.002)keepAnimating=true;
+      const clamped=state.offset;
       const focus=1-Math.min(1,Math.abs(clamped));
-      scene.style.setProperty('--parallax-y',(-clamped*54).toFixed(1)+'px');
-      scene.style.setProperty('--back-y',(-clamped*24).toFixed(1)+'px');
-      scene.style.setProperty('--mid-y',(-clamped*52).toFixed(1)+'px');
-      scene.style.setProperty('--front-y',(-clamped*92).toFixed(1)+'px');
-      scene.style.setProperty('--back-z',(-122+focus*24).toFixed(1)+'px');
-      scene.style.setProperty('--mid-z',(-38+focus*36).toFixed(1)+'px');
-      scene.style.setProperty('--front-z',(56+focus*88).toFixed(1)+'px');
-      scene.style.setProperty('--back-scale',(1.15-focus*.04).toFixed(3));
-      scene.style.setProperty('--mid-scale',(1.07+focus*.035).toFixed(3));
-      scene.style.setProperty('--front-rotate',(-11+focus*15).toFixed(1)+'deg');
-      if(scene.classList.contains('hero'))scene.style.setProperty('--hero-angle',(clamped*9).toFixed(1)+'deg');
+      scene.style.setProperty('--parallax-y',(-clamped*82).toFixed(1)+'px');
+      scene.style.setProperty('--back-y',(-clamped*38).toFixed(1)+'px');
+      scene.style.setProperty('--mid-y',(-clamped*88).toFixed(1)+'px');
+      scene.style.setProperty('--front-y',(-clamped*158).toFixed(1)+'px');
+      scene.style.setProperty('--back-z',(-205+focus*62).toFixed(1)+'px');
+      scene.style.setProperty('--mid-z',(-58+focus*92).toFixed(1)+'px');
+      scene.style.setProperty('--front-z',(88+focus*196).toFixed(1)+'px');
+      scene.style.setProperty('--back-scale',(1.24-focus*.08).toFixed(3));
+      scene.style.setProperty('--mid-scale',(1.04+focus*.13).toFixed(3));
+      scene.style.setProperty('--front-scale',(1+focus*.2).toFixed(3));
+      scene.style.setProperty('--front-rotate',(-15+focus*22).toFixed(1)+'deg');
+      if(scene.classList.contains('hero'))scene.style.setProperty('--hero-angle',(clamped*14).toFixed(1)+'deg');
+
+      state.cards.forEach((card,index)=>{
+        const direction=(index+sceneIndex)%2===0?-1:1;
+        const strength=1+(index%3)*.18;
+        card.style.setProperty('--card-x',(direction*clamped*14*strength).toFixed(1)+'px');
+        card.style.setProperty('--card-y',(-clamped*(24+index%3*9)).toFixed(1)+'px');
+        card.style.setProperty('--card-z',(focus*(30+index%3*13)).toFixed(1)+'px');
+        card.style.setProperty('--card-rx',(-clamped*(3.8+index%2)).toFixed(2)+'deg');
+        card.style.setProperty('--card-ry',(direction*clamped*(3.2+index%3)).toFixed(2)+'deg');
+      });
     });
-    ticking=false;
+    motionFrame=keepAnimating?requestAnimationFrame(drawMotion):0;
   };
   const requestUpdate=()=>{
-    if(!ticking){ticking=true;requestAnimationFrame(update)}
+    if(!motionFrame)motionFrame=requestAnimationFrame(drawMotion);
   };
   addEventListener('scroll',requestUpdate,{passive:true});
   addEventListener('resize',requestUpdate,{passive:true});
@@ -628,10 +650,15 @@ function setupMotion(){
       scene.style.setProperty('--pointer-back-y',(-y*4).toFixed(1)+'px');
       scene.style.setProperty('--pointer-mid-x',(x*10).toFixed(1)+'px');
       scene.style.setProperty('--pointer-mid-y',(y*7).toFixed(1)+'px');
-      scene.style.setProperty('--pointer-front-x',(x*21).toFixed(1)+'px');
-      scene.style.setProperty('--pointer-front-y',(y*14).toFixed(1)+'px');
-      scene.style.setProperty('--tilt-x',(-y*2.2).toFixed(2)+'deg');
-      scene.style.setProperty('--tilt-y',(x*2.8).toFixed(2)+'deg');
+      scene.style.setProperty('--pointer-front-x',(x*36).toFixed(1)+'px');
+      scene.style.setProperty('--pointer-front-y',(y*26).toFixed(1)+'px');
+      scene.style.setProperty('--tilt-x',(-y*4.6).toFixed(2)+'deg');
+      scene.style.setProperty('--tilt-y',(x*5.8).toFixed(2)+'deg');
+      motionStates.get(scene).cards.forEach((card,index)=>{
+        const factor=1+(index%3)*.16;
+        card.style.setProperty('--pointer-card-rx',(-y*1.7*factor).toFixed(2)+'deg');
+        card.style.setProperty('--pointer-card-ry',(x*2.1*factor).toFixed(2)+'deg');
+      });
     },{passive:true});
     scene.addEventListener('pointerleave',()=>{
       scene.style.setProperty('--pointer-back-x','0px');
@@ -642,9 +669,13 @@ function setupMotion(){
       scene.style.setProperty('--pointer-front-y','0px');
       scene.style.setProperty('--tilt-x','0deg');
       scene.style.setProperty('--tilt-y','0deg');
+      motionStates.get(scene).cards.forEach(card=>{
+        card.style.setProperty('--pointer-card-rx','0deg');
+        card.style.setProperty('--pointer-card-ry','0deg');
+      });
     },{passive:true});
   });
-  update();
+  drawMotion();
 }
 
 function setupAutoSave(){
