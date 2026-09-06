@@ -570,7 +570,7 @@ function setupMotion(){
     }
   });
   const items=[...document.querySelectorAll('.section-heading,.panel,.data-bar')];
-  const cards=[...document.querySelectorAll('.hero-copy,.hero-total,.section-heading,.panel,.data-bar')];
+  const cards=[...document.querySelectorAll('.hero-total,.panel,.data-bar')];
   cards.forEach(card=>card.classList.add('depth-card'));
   items.forEach(item=>item.classList.add('reveal-item'));
   if(reduced||!('IntersectionObserver' in window)){
@@ -600,7 +600,7 @@ function setupMotion(){
   const drawMotion=()=>{
     const viewport=window.visualViewport?.height||window.innerHeight;
     let keepAnimating=false;
-    scenes.forEach((scene,sceneIndex)=>{
+    scenes.forEach(scene=>{
       const rect=scene.getBoundingClientRect();
       const target=Math.max(-1.35,Math.min(1.35,(rect.top+rect.height/2-viewport/2)/viewport));
       const state=motionStates.get(scene);
@@ -622,14 +622,9 @@ function setupMotion(){
       scene.style.setProperty('--front-rotate',(-15+focus*22).toFixed(1)+'deg');
       if(scene.classList.contains('hero'))scene.style.setProperty('--hero-angle',(clamped*14).toFixed(1)+'deg');
 
-      state.cards.forEach((card,index)=>{
-        const direction=(index+sceneIndex)%2===0?-1:1;
-        const strength=1+(index%3)*.18;
-        card.style.setProperty('--card-x',(direction*clamped*14*strength).toFixed(1)+'px');
-        card.style.setProperty('--card-y',(-clamped*(24+index%3*9)).toFixed(1)+'px');
-        card.style.setProperty('--card-z',(focus*(30+index%3*13)).toFixed(1)+'px');
-        card.style.setProperty('--card-rx',(-clamped*(3.8+index%2)).toFixed(2)+'deg');
-        card.style.setProperty('--card-ry',(direction*clamped*(3.2+index%3)).toFixed(2)+'deg');
+      state.cards.forEach(card=>{
+        card.style.setProperty('--shine-y',(50-clamped*34).toFixed(1)+'%');
+        card.style.setProperty('--shine-opacity',(.06+focus*.12).toFixed(3));
       });
     });
     motionFrame=keepAnimating?requestAnimationFrame(drawMotion):0;
@@ -654,10 +649,9 @@ function setupMotion(){
       scene.style.setProperty('--pointer-front-y',(y*26).toFixed(1)+'px');
       scene.style.setProperty('--tilt-x',(-y*4.6).toFixed(2)+'deg');
       scene.style.setProperty('--tilt-y',(x*5.8).toFixed(2)+'deg');
-      motionStates.get(scene).cards.forEach((card,index)=>{
-        const factor=1+(index%3)*.16;
-        card.style.setProperty('--pointer-card-rx',(-y*1.7*factor).toFixed(2)+'deg');
-        card.style.setProperty('--pointer-card-ry',(x*2.1*factor).toFixed(2)+'deg');
+      motionStates.get(scene).cards.forEach(card=>{
+        card.style.setProperty('--shine-x',(50+x*38).toFixed(1)+'%');
+        card.style.setProperty('--shine-y',(50+y*28).toFixed(1)+'%');
       });
     },{passive:true});
     scene.addEventListener('pointerleave',()=>{
@@ -670,8 +664,7 @@ function setupMotion(){
       scene.style.setProperty('--tilt-x','0deg');
       scene.style.setProperty('--tilt-y','0deg');
       motionStates.get(scene).cards.forEach(card=>{
-        card.style.setProperty('--pointer-card-rx','0deg');
-        card.style.setProperty('--pointer-card-ry','0deg');
+        card.style.setProperty('--shine-x','72%');
       });
     },{passive:true});
   });
