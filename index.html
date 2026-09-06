@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f5f5f7">
   <meta name="description" content="メンバー、参加状況、費用をまとめて管理できる割り勘ツール">
   <title>EITS 割り勘マネージャー</title>
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body class="is-locked">
   <div class="lock-screen" id="lockScreen">
@@ -135,7 +135,7 @@
 
               <div class="table-wrap">
                 <table class="data-table" id="attendTable">
-                  <thead><tr><th>名前</th><th>役職</th><th id="thSoubet">送別品 0/0</th><th id="thIchi">1次会 0/0</th><th id="thNi">2次会 0/0</th></tr></thead>
+                  <thead><tr><th>名前</th><th>役職</th><th id="thSoubet" data-short-label="送別">送別品 0/0</th><th id="thIchi" data-short-label="1次">1次会 0/0</th><th id="thNi" data-short-label="2次">2次会 0/0</th></tr></thead>
                   <tbody id="attendBody"><tr><td colspan="5"><div class="empty-state">メンバーを追加すると表示されます</div></td></tr></tbody>
                 </table>
               </div>
@@ -279,6 +279,6 @@
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
